@@ -11,7 +11,7 @@
                :render-header="item.renderHeader"
                :class-name="item.className">
                <template slot-scope="params">
-                  <Slot :render="item.render" :column="item" :row="params.row" :index="params.$index"></Slot>
+                  <v-slot :render="item.render" :column="item" :row="params.row" :index="params.$index"></v-slot>
                </template>
             </el-table-column>
 
@@ -24,7 +24,7 @@
                :width="item.width"
                :class-name="item.className">
                <template slot-scope="params">
-                  <Slot :render="item.render" :column="item" :row="params.row" :index="params.$index"></Slot>
+                  <v-slot :render="item.render" :column="item" :row="params.row" :index="params.$index"></v-slot>
                </template>
             </el-table-column>
          </template>
@@ -44,7 +44,7 @@
    </el-table>
 </template>
 <script>
-import Slot from './SlotRender';
+import vSlot from './SlotRender';
 
 export default {
    props: {
@@ -70,7 +70,7 @@ export default {
    data() {
       return {}
    },
-   components: { Slot },
+   components: { vSlot },
    methods: {
       orderMethod: function (params) {
          let order = params.column.order || ''
