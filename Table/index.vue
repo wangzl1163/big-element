@@ -1,7 +1,16 @@
 <template>
    <div>
-      <el-table :row-class-name="rowClassName" :border="border" :data="tableData"
-         @sort-change="orderMethod" :show-header="showHeader" :height="height">
+      <el-table
+         :row-class-name="rowClassName"
+         :border="border"
+         :data="tableData"
+         :show-header="showHeader"
+         :height="height"
+         :header-row-class-name="headerRowClassName"
+         :header-cell-class-name="headerCellClassName"
+         :highlight-current-row="highlightCurrentRow"
+         @current-change="handleCurrentRowChange"
+         @sort-change="orderMethod">
          <template v-for="(item) in columns">
             <template v-if="item.render">
                <el-table-column v-if="item.renderHeader"
@@ -73,12 +82,14 @@ export default {
          type: Array
       },
       rowClassName: {
-         type: Function
+         type: Function | String
       },
       showHeader: {
          type: Boolean,
          default: true
       },
+      headerRowClassName: Function | String,
+      headerCellClassName: Function | String,
       height: String,
       pageIndex: {
          type: Number,
@@ -99,6 +110,10 @@ export default {
       showPagination: {
          type: Boolean,
          default: true
+      },
+      highlightCurrentRow: {
+         type: Boolean,
+         default: false
       }
    },
    data() {
@@ -115,13 +130,18 @@ export default {
          this.$emit('orderMethod', column)
       },
       handleSizeChange(val) {
-        this.$emit('update:pageSize', val) // 用于支持.sync修饰符
-        this.$emit('pageSizeChange', val)
+         this.$emit('update:pageSize', val) // 用于支持.sync修饰符
+         this.$emit('pageSizeChange', val)
       },
       handleCurrentChange(val) {
-        this.$emit('update:pageIndex', val)
-        this.$emit('pageChange', val)
+         this.$emit('update:pageIndex', val)
+         this.$emit('pageChange', val)
+      },
+      handleCurrentRowChange(val){
+         // 返回选中的当前行
+         this.$emit('currentRowChange', val)
       }
    }
 }
 </script>
+
