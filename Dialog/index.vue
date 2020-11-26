@@ -9,7 +9,8 @@
          :close-on-click-modal="maskCloseable"
          :show-close="showClose"
          @close="cancel"
-         @open="open">
+         @open="open"
+         @closed="closed">
          <template slot="title">
             <slot name="title"></slot>
          </template>
@@ -82,6 +83,9 @@ export default {
       },
       open() {
          this.$emit('open')
+      },
+      closed(){
+         this.$emit('closed')
       }
    }
 }
