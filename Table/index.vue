@@ -9,6 +9,7 @@
          :header-row-class-name="headerRowClassName"
          :header-cell-class-name="headerCellClassName"
          :highlight-current-row="highlightCurrentRow"
+         :span-method="spanMethod"
          @current-change="handleCurrentRowChange"
          @sort-change="orderMethod">
          <template v-for="(item) in columns">
@@ -114,7 +115,8 @@ export default {
       highlightCurrentRow: {
          type: Boolean,
          default: false
-      }
+      },
+      spanMethod: Function
    },
    data() {
       return {}
