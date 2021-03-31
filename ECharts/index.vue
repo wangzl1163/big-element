@@ -1,5 +1,8 @@
 <template>
-  <VECharts :ref="echartsId" :option="option" :update-options="updateOptions" :autoresize="autoResize"/>
+  <div class="echarts">
+    <VECharts v-if="hasData" :ref="echartsId" :option="option" :update-options="updateOptions" :autoresize="autoresize" :loading="loading" />
+    <div v-else class="echarts_empty">{{ empty }}</div>
+  </div>
 </template>
 
 <script>
@@ -17,9 +20,13 @@ export default {
         notMerge: true // echarts options 不合并
       })
     },
-	 autoResize: { // 根据组件大小变化是否自动重绘
+    autoresize: { // 根据组件大小变化是否自动重绘
       type: Boolean,
       default: true
+    },
+    empty: {
+      type: String,
+      default: '暂无数据'
     }
   },
   data() {
@@ -27,11 +34,33 @@ export default {
       echartsId: 'echarts_' + Date.now()
     }
   },
-  mounted() {
-    this.$nextTick(() => this.$refs[this.echartsId].resize())
-    window.onresize = () => {
-      this.$refs[this.echartsId].resize()
+  computed: {
+    hasData: function() {
+      // 在option被赋值为非空对象之前不做是否有数据判断
+      if (this.option.series) {
+        return this.option.series.every(item => item.data.length > 0)
+      }
+
+      return true
+    },
+    loading: function() {
+      // 判断是否为加载数据中，第一次加载数据后再加载数据时可以把option置为空对象来实现显示加载动画
+      return !this.option.series
     }
   }
 }
 </script>
+<style lang="less" scoped>
+	.echarts{
+	   width: 100%;
+      height: 100%;
+  }
+  .echarts_empty{
+    display: inline-block;
+    position: relative;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    color: #909399;
+  }
+</style>
