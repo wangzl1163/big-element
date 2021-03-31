@@ -1,6 +1,7 @@
 <template>
    <div>
       <el-table
+         :ref="tableRef"
          :row-class-name="rowClassName"
          :border="border"
          :data="tableData"
@@ -11,7 +12,8 @@
          :highlight-current-row="highlightCurrentRow"
          :span-method="spanMethod"
          @current-change="handleCurrentRowChange"
-         @sort-change="orderMethod">
+         @sort-change="orderMethod"
+         @selection-change="handleSelectionChange">
          <template v-for="(item) in columns">
             <template v-if="item.render">
                <el-table-column v-if="item.renderHeader"
@@ -119,7 +121,9 @@ export default {
       spanMethod: Function
    },
    data() {
-      return {}
+      return {
+         tableRef: 'table_' + Date.now()
+      }
    },
    components: { vSlot },
    methods: {
@@ -142,7 +146,14 @@ export default {
       handleCurrentRowChange(val){
          // 返回选中的当前行
          this.$emit('currentRowChange', val)
-      }
+      },
+      handleSelectionChange(val) {
+         // 当选择项发生变化时会触发该事件
+         this.$emit('selectionChange', val)
+      },
+      clearSelection(){
+         this.$refs[this.tableRef].clearSelection()
+      }
    }
 }
 </script>
