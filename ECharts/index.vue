@@ -1,5 +1,5 @@
 <template>
-  <VECharts :ref="echartsId" :option="option" :update-options="updateOptions" />
+  <VECharts :ref="echartsId" :option="option" :update-options="updateOptions" :autoresize="autoResize"/>
 </template>
 
 <script>
@@ -16,6 +16,10 @@ export default {
       default: () => ({
         notMerge: true // echarts options 不合并
       })
+    },
+	 autoResize: { // 根据组件大小变化是否自动重绘
+      type: Boolean,
+      default: true
     }
   },
   data() {
