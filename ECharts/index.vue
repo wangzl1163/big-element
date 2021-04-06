@@ -38,7 +38,7 @@ export default {
     hasData: function() {
       // 在option被赋值为非空对象之前不做是否有数据判断
       if (this.option.series) {
-        return this.option.series.every(item => item.data.length > 0)
+        return this.option.series.length && this.option.series.every(item => item.data.length > 0)
       }
 
       return true
