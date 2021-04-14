@@ -1,2 +1,2 @@
 # generalComponents
-一些通用组件
+一些基于element的组件封装的通用组件
