@@ -1,2 +1,2 @@
-# generalComponents
-一些基于element的组件封装的通用组件
+# big-element
+一个基于element的组件封装的组件库
