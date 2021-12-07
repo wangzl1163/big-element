@@ -27,7 +27,11 @@
   "dependencies": {
     "@babel/runtime-corejs3": "^7.16.3",
     "core-js": "^3.19.3",
-    "vue-demi": "^0.12.1"
+    "echarts": "^5.2.2",
+    "element-plus": "^1.2.0-beta.5",
+    "element-ui": "^2.15.6",
+    "vue-demi": "^0.12.1",
+    "vue-echarts": "^6.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.16.0",
