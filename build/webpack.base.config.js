@@ -14,7 +14,10 @@ module.exports = {
    },
    resolve: {
       // 如果去掉'.js'，则会报Module not found: Error: Can't resolve '@babel/runtime/helpers/asyncToGenerator' in '...'错误
-      extensions: ['.js', '.vue']
+      extensions: ['.js', '.vue'],
+      alias: {
+         "@": path.resolve(__dirname, '../packages')
+      }
    },
    plugins: [
       new SmartBannerPlugin(banner)

@@ -8,9 +8,9 @@
 			:autoresize="autoresize"
 			:loading="loading"
 		/>
-		    
+
 		<div v-else class="echarts__empty" v-html="empty"></div>
-		
+
 		<div v-if="!hasData && showChartWidthNoData" class="echarts__empty echarts--no-data" v-html="empty"></div>
 	</div>
 </template>
@@ -18,6 +18,7 @@
 <script>
 import VECharts from './echarts.js'
 export default {
+	name: 'BEECharts',
 	components: { VECharts },
 	props: {
 		option: {
@@ -71,47 +72,45 @@ export default {
 				this.chartOption = val
 
 				if (!this.hasData) {
-					const isLineBar = this.option.series.every(item =>
-            ["line", "bar"].includes(item.type)
-          );
-          if (isLineBar) {
+					const isLineBar = this.option.series.every((item) => ['line', 'bar'].includes(item.type))
+					if (isLineBar) {
 						const timeValueObj = {
-						min: 0,
-						max: 100
-						};
+							min: 0,
+							max: 100
+						}
 						const axisSetting = {
-						category: {
-							data: ["xx", "xx", "xx"]
-						},
-						value: timeValueObj,
-						time: timeValueObj
-						};
+							category: {
+								data: ['xx', 'xx', 'xx']
+							},
+							value: timeValueObj,
+							time: timeValueObj
+						}
 
 						this.chartOption.xAxis = {
-						...this.chartOption.xAxis,
-						...axisSetting[this.chartOption.xAxis.type]
-						};
+							...this.chartOption.xAxis,
+							...axisSetting[this.chartOption.xAxis.type]
+						}
 
 						this.chartOption.yAxis = {
-						...this.chartOption.yAxis,
-						...axisSetting[this.chartOption.yAxis.type],
-						splitLine: {
-							show: false
+							...this.chartOption.yAxis,
+							...axisSetting[this.chartOption.yAxis.type],
+							splitLine: {
+								show: false
+							}
 						}
-						};
 					}
 				}
 			},
 			immediate: true
 		}
-	},
+	}
 }
 </script>
 <style lang="less" scoped>
-	.echarts{
-	   width: 100%;
-      height: 100%;
-  }
+.echarts{
+	width: 100%;
+   height: 100%;
+}
   .echarts__empty{
     display: inline-block;
     position: relative;

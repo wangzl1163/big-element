@@ -12,7 +12,7 @@
   },
   "keywords": [
     "vue",
-    "element"
+    "big-element"
   ],
   "author": "wangzl1163（wangzl1163@qq.com）",
   "license": "MIT",
@@ -28,8 +28,6 @@
     "@babel/runtime-corejs3": "^7.16.3",
     "core-js": "^3.19.3",
     "echarts": "^5.2.2",
-    "element-plus": "^1.2.0-beta.5",
-    "element-ui": "^2.15.6",
     "vue-demi": "^0.12.1",
     "vue-echarts": "^6.0.0"
   },
@@ -40,9 +38,10 @@
     "@babel/plugin-transform-runtime": "^7.16.4",
     "@babel/preset-env": "^7.16.4",
     "@vue/compiler-sfc": "^3.2.24",
-    "@vue/composition-api": "^1.4.1",
     "babel-loader": "^8.2.3",
     "css-loader": "^6.5.1",
+    "element-plus": "^1.2.0-beta.6",
+    "element-ui": "^2.15.6",
     "eslint": "^8.4.0",
     "eslint-config-prettier": "^8.3.0",
     "less": "^4.1.2",
