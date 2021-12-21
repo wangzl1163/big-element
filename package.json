@@ -17,9 +17,9 @@
   "author": "wangzl1163（wangzl1163@qq.com）",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/wangzl1163/generalComponents/issues"
+    "url": "https://github.com/wangzl1163/big-element/issues"
   },
-  "homepage": "https://github.com/wangzl1163/generalComponents#readme",
+  "homepage": "https://github.com/wangzl1163/big-element#readme",
   "scripts": {
     "build:dev": "webpack --config build/webpack.dev.config.js",
     "build:prod": "webpack --config build/webpack.prod.config.js"

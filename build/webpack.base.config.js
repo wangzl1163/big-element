@@ -12,6 +12,12 @@ module.exports = {
       libraryTarget: 'umd',
       umdNamedDefine: true
    },
+   externals: {
+      vue: "Vue",
+      'element-ui': 'Element',
+      'element-plus': 'ElementPlus',
+      echarts: 'ECharts'
+   },
    resolve: {
       // 如果去掉'.js'，则会报Module not found: Error: Can't resolve '@babel/runtime/helpers/asyncToGenerator' in '...'错误
       extensions: ['.js', '.vue'],
