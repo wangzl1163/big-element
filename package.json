@@ -2,10 +2,10 @@
   "name": "big-element",
   "version": "1.0.0-alpha.0",
   "description": "A component library based element-ui and element-plus.",
-  "main": "dist/big-element.min.js",
+  "main": "packages/index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/wangzl1163/generalComponents.git"
+    "url": "git+https://github.com/wangzl1163/big-element.git"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org"
