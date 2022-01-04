@@ -15,13 +15,7 @@ module.exports = {
    ],
    parser: 'vue-eslint-parser',
    parserOptions: {
-      parser: {
-         js: "@babel/eslint-parser"
-      },
-      sourceType: "module",
-      babelOptions: {
-         configFile: path.join(__dirname, "/babel.config.json")
-      }
+      sourceType: "module"
    },
    rules: {
       indent: ['error', 3],
