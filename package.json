@@ -1,6 +1,6 @@
 {
   "name": "big-element",
-  "version": "1.0.0",
+  "version": "1.0.0-alpha.0",
   "description": "A component library based element-ui and element-plus.",
   "main": "dist/big-element.min.js",
   "repository": {
@@ -21,15 +21,11 @@
   },
   "homepage": "https://github.com/wangzl1163/big-element#readme",
   "scripts": {
-    "build:dev": "webpack --config build/webpack.dev.config.js",
-    "build:prod": "webpack --config build/webpack.prod.config.js"
+    "components": "node ./build/components.js"
   },
   "dependencies": {
     "@babel/runtime-corejs3": "^7.16.3",
-    "core-js": "^3.19.3",
-    "echarts": "^5.2.2",
-    "vue-demi": "^0.12.1",
-    "vue-echarts": "^6.0.0"
+    "core-js": "^3.19.3"
   },
   "devDependencies": {
     "@babel/core": "^7.16.0",
@@ -40,8 +36,6 @@
     "@vue/compiler-sfc": "^3.2.24",
     "babel-loader": "^8.2.3",
     "css-loader": "^6.5.1",
-    "element-plus": "^1.2.0-beta.6",
-    "element-ui": "^2.15.6",
     "eslint": "^8.4.0",
     "eslint-config-prettier": "^8.3.0",
     "less": "^4.1.2",
@@ -56,12 +50,10 @@
     "webpack-merge": "^5.8.0"
   },
   "peerDependencies": {
-    "@vue/composition-api": "^1.0.5",
-    "vue": "^2.6.14 || ^3.1.1"
-  },
-  "peerDependenciesMeta": {
-    "@vue/composition-api": {
-      "optional": true
-    }
+    "vue": "^2.6.14 || ^3.1.1",
+    "element-ui": "^2.15.7",
+    "element-plus": "^1.2.0-beta.6",
+    "echarts": "^5.2.2",
+    "vue-echarts": "^6.0.0"
   }
 }
