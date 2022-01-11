@@ -1,8 +1,8 @@
 {
   "name": "be-examples",
-  "version": "0.0.0",
+  "version": "1.0.0-alpha.1",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --port=9001",
     "build": "vue-tsc --noEmit && vite build",
     "preview": "vite preview"
   },
