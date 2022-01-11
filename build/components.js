@@ -29,7 +29,7 @@ function genComponentIndex() {
                res.components.push(file)
                //   res.exports.push(`export { default as BE${file} } from './${file}'`)
                res.exports.push(`export * from './${file}'`)
-               res.imports.push(`import { BE${file} } from '@/Components/${file}'`)
+               res.imports.push(`import { BE${file} } from './Components/${file}'`)
             }
             return res
          },
