@@ -1,6 +1,6 @@
 <template>
    <div>
-      <VDialog
+      <el-dialog
          :id="id"
          :title="title"
          :append-to-body="true"
@@ -21,18 +21,15 @@
             <slot name="footer"></slot>
          </template>
          <template slot="footer" v-else>
-            <VButton v-if="showCancel" @click="cancel">{{cancelText}}</VButton>
-            <VButton type="primary" @click="confirm">{{confirmText}}</VButton>
+            <el-button v-if="showCancel" @click="cancel">{{cancelText}}</el-button>
+            <el-button type="primary" @click="confirm">{{confirmText}}</el-button>
          </template>
-      </VDialog>
+      </el-dialog>
    </div>
 </template>
 <script>
-import {VButton, VDialog } from '@/Utils/register';
-
 export default {
    name: 'BEDialog',
-   components: {VButton, VDialog},
    props: {
       id: {
          type: String,
