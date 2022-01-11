@@ -1,6 +1,6 @@
 <template>
    <div>
-      <VTable
+      <el-table
          :ref="tableRef"
          :row-class-name="rowClassName"
          :border="border"
@@ -16,7 +16,7 @@
          @selection-change="handleSelectionChange">
          <template v-for="(item) in columns">
             <template v-if="item.render">
-               <VTableColumn v-if="item.renderHeader"
+               <el-table-column v-if="item.renderHeader"
                   :prop="item.key"
                   :sortable="item.sortable?item.sortable:false"
                   :key="item.key" :align="item.align"
@@ -26,9 +26,9 @@
                   <template slot-scope="params">
                      <v-slot :render="item.render" :column="item" :row="params.row" :index="params.$index"></v-slot>
                   </template>
-               </VTableColumn>
+               </el-table-column>
 
-               <VTableColumn v-else
+               <el-table-column v-else
                   :prop="item.key"
                   :label="item.title"
                   :sortable="item.sortable?item.sortable:false"
@@ -39,10 +39,10 @@
                   <template slot-scope="params">
                      <v-slot :render="item.render" :column="item" :row="params.row" :index="params.$index"></v-slot>
                   </template>
-               </VTableColumn>
+               </el-table-column>
             </template>
 
-            <VTableColumn v-else
+            <el-table-column v-else
                :prop="item.key"
                :label="item.title"
                :key="item.key"
@@ -52,11 +52,11 @@
                :render-header="item.renderHeader"
                :class-name="item.className"
                show-overflow-tooltip>
-            </VTableColumn>
+            </el-table-column>
          </template>
-      </VTable>
+      </el-table>
       <div v-if="showPagination" style="margin-top: 20px;text-align: right;">
-         <VPagination
+         <el-pagination
             @size-change="handleSizeChange"
             @current-change="handleCurrentChange"
             :current-page="pageIndex"
@@ -64,18 +64,16 @@
             :page-size="pageSize"
             layout="total, sizes, prev, pager, next, jumper"
             :total="total">
-         </VPagination>
+         </el-pagination>
       </div>
    </div>
 
 </template>
 <script>
-import { VTable,VTableColumn,VPagination } from '@/Utils/register';
 import vSlot from './SlotRender';
 
 export default {
    name: 'BETable',
-   components: {VTable,VTableColumn,VPagination},
    props: {
       border: {
          type: Boolean,
