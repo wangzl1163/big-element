@@ -1,5 +1,5 @@
 <template>
-	<div class="echarts">
+	<div class="be-echarts">
 		<VECharts
 			v-if="hasData || showChartWidthNoData"
 			:ref="chartId"
@@ -9,9 +9,9 @@
 			:loading="loading"
 		/>
 
-		<div v-else class="echarts__empty" v-html="empty"></div>
+		<div v-else class="be-echarts__empty" v-html="empty"></div>
 
-		<div v-if="!hasData && showChartWidthNoData" class="echarts__empty echarts--no-data" v-html="empty"></div>
+		<div v-if="!hasData && showChartWidthNoData" class="be-echarts__empty be-echarts--no-data" v-html="empty"></div>
 	</div>
 </template>
 
@@ -106,20 +106,3 @@ export default {
 	}
 }
 </script>
-<style scoped>
-.echarts{
-	width: 100%;
-   height: 100%;
-}
-  .echarts__empty{
-    display: inline-block;
-    position: relative;
-    top:50%;
-    left:50%;
-    transform: translate(-50%,-50%);
-    color: #909399;
-  }
-	.echarts--no-data{
-		top: -50%
-	}
-</style>

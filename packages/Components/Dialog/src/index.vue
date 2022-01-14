@@ -1,5 +1,5 @@
 <template>
-   <div>
+   <div class="be-dialog">
       <el-dialog
          :id="id"
          :title="title"
@@ -91,28 +91,3 @@ export default {
    }
 }
 </script>
-
-<style lang="less">
-.el-dialog {
-   border-radius: 6px;
-}
-.el-dialog__body {
-   padding-top: 16px;
-   padding-bottom: 16px;
-}
-
-@border: 1px solid #e8eaec;
-.el-dialog__header {
-   border-bottom: @border;
-   background-color: #f7f7f7;
-}
-
-.el-dialog__footer {
-   padding-bottom: 10px;
-   border-top: @border;
-}
-
-.el-dialog__headerbtn .el-dialog__close {
-   font-size: 16px;
-}
-</style>
