@@ -1,4 +1,4 @@
-import { NOOP } from '@vue/shared'
+const NOOP = () => {}
 
 export const withInstall = (
   main,

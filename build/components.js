@@ -26,6 +26,11 @@ function genComponentIndex() {
          (res, file) => {
             file = file.slice(0, file.length - extname(file).length)
             if (res.components.indexOf(file) === -1) {
+               // ECharts 不自动生成导出，使用时手动导入
+               if (file === 'ECharts') {
+                  return
+               }
+
                res.components.push(file)
                //   res.exports.push(`export { default as BE${file} } from './${file}'`)
                res.exports.push(`export * from './${file}'`)

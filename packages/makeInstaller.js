@@ -1,13 +1,7 @@
 const makeInstaller = (components = []) => {
   const apps = []
 
-  const install = (app, opts) => {
-    const defaultInstallOpt = {
-      size: '',
-      zIndex: 2000,
-    }
-
-    const option = Object.assign(defaultInstallOpt, opts)
+  const install = (app) => {
     if (apps.includes(app)) return
     apps.push(app)
 
