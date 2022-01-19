@@ -1,4 +1,8 @@
-# big-element
+<h1 align="center">
+<img src="https://img.shields.io/badge/BE-big--element-42b883"/>
+</h1>
+
+# big-element <a href='https://www.npmjs.com/package/big-element'>![npm](https://img.shields.io/npm/v/big-element?color=42b883&style=for-the-badge)</a>
 
 一个基于 element 组件库中的组件封装的组件库。big-element 适配了 element-ui 和 element-plus 组件库，支持被封装的组件在这两个组件库中原有的属性。
 
