@@ -17,7 +17,7 @@ const goHome = () => {
   </template>
 
 	<template v-if="currentRoute.path === '/home'">
-		<img alt="Vue logo" src="./assets/logo.png" style="margin-top: 60px;" />
+		<img alt="Vue logo" src="https://img.shields.io/badge/BE-big--element-42b883" style="display:block;margin: 60px auto;" />
 		<ul class="nav-link">
 			<li v-for="route in routes" class="nav-link__item">
 				<router-link :to="route.path">{{ route.meta.title }}</router-link>
@@ -33,7 +33,6 @@ const goHome = () => {
 	font-family: Avenir, Helvetica, Arial, sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-	text-align: center;
 	color: #2c3e50;
 }
 .nav-link {

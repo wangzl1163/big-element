@@ -14,6 +14,7 @@
    border-bottom: var(--border-base);
 	border-bottom-color: var(--dialog-border-color);
    background-color: #f7f7f7;
+   border-radius: inherit;
 }
 
 .be-dialog .el-dialog__footer {

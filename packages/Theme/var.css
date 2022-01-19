@@ -49,8 +49,6 @@
 	--border-style-base: solid;
 	--border-color-hover: var(--color-text-placeholder);
 	--border-base: var(--border-width-base) var(--border-style-base) var(--border-color-base);
-	--border-radius-base: 4px;
-	--border-radius-small: 2px;
 	--border-radius-circle: 100%;
 	--border-radius-zero: 0;
 

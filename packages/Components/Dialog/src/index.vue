@@ -1,93 +1,132 @@
 <template>
-   <div class="be-dialog">
-      <el-dialog
-         :id="id"
-         :title="title"
-         :append-to-body="true"
-         :width="width"
-         :visible="visible"
-         :close-on-click-modal="maskCloseable"
-         :show-close="showClose"
-         @close="cancel"
-         @open="open"
-         @closed="closed">
-         <template slot="title">
-            <slot name="title"></slot>
-         </template>
+	<el-dialog
+		v-bind="attrs"
+		:title="title"
+		:append-to-body="appendToBody"
+		:width="dialogWidth"
+		:close-on-click-modal="maskCloseable"
+		:show-close="showClose"
+		:customClass="'be-dialog ' + customClass"
+		@close="cancel"
+		@open="open"
+		@closed="closed"
+	>
+		<template v-slot:title>
+			<slot name="title"></slot>
+		</template>
 
-         <slot></slot>
+		<slot></slot>
 
-         <template slot="footer" v-if="footerOn">
-            <slot name="footer"></slot>
-         </template>
-         <template slot="footer" v-else>
-            <el-button v-if="showCancel" @click="cancel">{{cancelText}}</el-button>
-            <el-button type="primary" @click="confirm">{{confirmText}}</el-button>
-         </template>
-      </el-dialog>
-   </div>
+		<template v-slot:footer v-if="$slots.footer">
+			<slot name="footer"></slot>
+		</template>
+		<template v-slot:footer v-else>
+			<el-button v-if="showCancel" @click="cancel">{{ cancelText }}</el-button>
+			<el-button type="primary" :loading="loading" @click="confirm">{{ confirmText }}</el-button>
+		</template>
+	</el-dialog>
 </template>
 <script>
+import { vueVersion } from '../../../Store/index'
+import { isValidWidthUnit } from '../../../Utils/validators';
+import { isNumber } from '../../../Utils/util';
+
 export default {
-   name: 'BEDialog',
-   props: {
-      id: {
-         type: String,
-         default: Date.now().toString()
-      },
-      visible: {
-         type: Boolean
-      },
-      title: {
-         type: String
-      },
-      confirmText: {
-         type: String,
-         default: '确定'
-      },
-      cancelText: {
-         type: String,
-         default: '取消'
-      },
-      footerOn: {
-         type: Boolean,
-         default: false
-      },
-      width: {
-         type: String,
-         default: '550px'
-      },
-      maskCloseable: {
-         type: Boolean,
-         default: false
-      },
-      showClose: {
-         type: Boolean,
-         default: true
-      },
-      showCancel: {
-         type: Boolean,
-         default: true
-      }
-   },
-   data() {
-      return {}
-   },
-   methods: {
-      confirm() {
-         this.$emit('update:visible', false)
-         this.$emit('confirm')
-      },
-      cancel() {
-         this.$emit('update:visible', false)
-         this.$emit('cancel')
-      },
-      open() {
-         this.$emit('open')
-      },
-      closed(){
-         this.$emit('closed')
-      }
-   }
+	name: 'BEDialog',
+	props: {
+		visible: {
+			required: true,
+			type: Boolean
+		},
+		title: {
+			type: String,
+			default: ''
+		},
+		width: {
+			type: [String, Number],
+			default: '550px',
+			validator: isValidWidthUnit
+		},
+		maskCloseable: {
+			type: Boolean,
+			default: false
+		},
+		showClose: {
+			type: Boolean,
+			default: true
+		},
+		appendToBody: {
+			type: Boolean,
+			default: true
+		},
+		customClass: {
+			type: String,
+			default: ''
+		},
+		showCancel: {
+			// footer 非 slot 时生效
+			type: Boolean,
+			default: true
+		},
+		confirmText: {
+			// footer 非 slot 时生效
+			type: String,
+			default: '确定'
+		},
+		cancelText: {
+			// footer 非 slot 时生效
+			type: String,
+			default: '取消'
+		}
+	},
+	// vue2 会自动忽略该选项
+	emits: ['update:visible', 'confirm', 'cancel', 'open', 'closed'],
+	data() {
+		return {
+			loading: false
+		}
+	},
+	computed: {
+		attrs() {
+			if (vueVersion.isVue2()) {
+				return {
+					...this.$attrs,
+					visible: this.visible
+				}
+			}
+
+			if (vueVersion.isVue3()) {
+				return {
+					...this.$attrs,
+					modelValue: this.visible
+				}
+			}
+		},
+		dialogWidth(){
+			return isNumber(this.width) ? this.width + 'px' : this.width
+		}
+	},
+	watch: {
+		visible() {
+			this.loading = false
+		}
+	},
+	methods: {
+		confirm() {
+			this.loading = true
+			this.$emit('update:visible', false)
+			this.$emit('confirm')
+		},
+		cancel() {
+			this.$emit('update:visible', false)
+			this.$emit('cancel')
+		},
+		open() {
+			this.$emit('open')
+		},
+		closed() {
+			this.$emit('closed')
+		}
+	}
 }
 </script>
