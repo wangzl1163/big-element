@@ -21,6 +21,11 @@ const router = createRouter({
 			path: '/table',
 			component: () => import('@/views/Table/index.vue'),
 			meta: {title: 'Table'}
+		},
+		{
+			path: '/confirmButton',
+			component: () => import('@/views/ConfirmButton/index.vue'),
+			meta: {title: 'ConfirmButton'}
 		}
 	]
 })
