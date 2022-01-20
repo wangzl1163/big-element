@@ -1,17 +1,17 @@
 @import "../var.css";
 
 .be-status-text--primary {
-	color: var(--color-primary);
+	color: var(--be-color-primary);
 }
 .be-status-text--success {
-	color: var(--color-success);
+	color: var(--be-color-success);
 }
 .be-status-text--warning {
-	color: var(--color-warning);
+	color: var(--be-color-warning);
 }
 .be-status-text--danger {
-	color: var(--color-danger);
+	color: var(--be-color-danger);
 }
 .be-status-text--info {
-	color: var(--color-info);
+	color: var(--be-color-info);
 }

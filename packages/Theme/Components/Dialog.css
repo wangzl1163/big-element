@@ -2,7 +2,7 @@
 	--dialog-border-color:#e8eaec;
 }
 .be-dialog .el-dialog {
-   border-radius: var(--border-radius-base);
+   border-radius: var(--be-border-radius-base);
 }
 .be-dialog .el-dialog__body {
    padding-top: 16px;
@@ -11,7 +11,7 @@
 
 
 .be-dialog .el-dialog__header {
-   border-bottom: var(--border-base);
+   border-bottom: var(--be-border-base);
 	border-bottom-color: var(--dialog-border-color);
    background-color: #f7f7f7;
    border-radius: inherit;
@@ -19,10 +19,10 @@
 
 .be-dialog .el-dialog__footer {
    padding-bottom: 10px;
-   border-top: var(--border-base);
+   border-top: var(--be-border-base);
 	border-top-color: var(--dialog-border-color);
 }
 
 .be-dialog .el-dialog__headerbtn .el-dialog__close {
-   font-size: var(--font-size-medium);
+   font-size: var(--be-font-size-medium);
 }

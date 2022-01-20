@@ -1,110 +1,110 @@
 :root{
 	/* 主题色 */
-	--color-white: #ffffff;
-	--color-black: #000000;
-	--color-primary: #409eff; /*rgb(64, 158, 255)*/
-	--color-primary-light-1: rgba(64, 158, 255, 0.1);
-	--color-primary-light-2: rgba(64, 158, 255, 0.2);
-	--color-primary-light-3: rgba(64, 158, 255,0.3);
-	--color-primary-light-4: rgba(64, 158, 255,0.4);
-	--color-primary-light-5: rgba(64, 158, 255,0.5);
-	--color-primary-light-6: rgba(64, 158, 255,0.6);
-	--color-primary-light-7: rgba(64, 158, 255,0.7);
-	--color-primary-light-8: rgba(64, 158, 255,0.8);
-	--color-primary-light-9: rgba(64, 158, 255,0.9);
-	--color-success: #67c23a; /*rgb(103, 194, 58)*/
-	--color-warning: #e6a23c; /*rgb(230, 162, 60)*/
-	--color-danger: #f56c6c; /*rgb(245, 108, 108)*/
-	--color-info: #909399; /*rgb(144, 147, 153)*/
+	--be-color-white: #ffffff;
+	--be-color-black: #000000;
+	--be-color-primary: #409eff; /*rgb(64, 158, 255)*/
+	--be-color-primary-light-1: rgba(64, 158, 255, 0.1);
+	--be-color-primary-light-2: rgba(64, 158, 255, 0.2);
+	--be-color-primary-light-3: rgba(64, 158, 255,0.3);
+	--be-color-primary-light-4: rgba(64, 158, 255,0.4);
+	--be-color-primary-light-5: rgba(64, 158, 255,0.5);
+	--be-color-primary-light-6: rgba(64, 158, 255,0.6);
+	--be-color-primary-light-7: rgba(64, 158, 255,0.7);
+	--be-color-primary-light-8: rgba(64, 158, 255,0.8);
+	--be-color-primary-light-9: rgba(64, 158, 255,0.9);
+	--be-color-success: #67c23a; /*rgb(103, 194, 58)*/
+	--be-color-warning: #e6a23c; /*rgb(230, 162, 60)*/
+	--be-color-danger: #f56c6c; /*rgb(245, 108, 108)*/
+	--be-color-info: #909399; /*rgb(144, 147, 153)*/
 
-	--color-success-light: rgba(103, 194, 58, 0.8);
-	--color-warning-light: rgba(230, 162, 60, 0.8);
-	--color-danger-light: rgba(245, 108, 108, 0.8);
-	--color-info-light: rgba(144, 147, 153, 0.8);
+	--be-color-success-light: rgba(103, 194, 58, 0.8);
+	--be-color-warning-light: rgba(230, 162, 60, 0.8);
+	--be-color-danger-light: rgba(245, 108, 108, 0.8);
+	--be-color-info-light: rgba(144, 147, 153, 0.8);
 
-	--color-success-lighter: rgba(103, 194, 58, 0.9);
-	--color-warning-lighter: rgba(230, 162, 60, 0.9);
-	--color-danger-lighter: rgba(245, 108, 108, 0.9);
-	--color-info-lighter: rgba(144, 147, 153, 0.9);
+	--be-color-success-lighter: rgba(103, 194, 58, 0.9);
+	--be-color-warning-lighter: rgba(230, 162, 60, 0.9);
+	--be-color-danger-lighter: rgba(245, 108, 108, 0.9);
+	--be-color-info-lighter: rgba(144, 147, 153, 0.9);
 
-	--color-text-primary: #303133;
-	--color-text-regular: #606266;
-	--color-text-secondary: #909399;
-	--color-text-placeholder: #c0c4cc;
+	--be-color-text-primary: #303133;
+	--be-color-text-regular: #606266;
+	--be-color-text-secondary: #909399;
+	--be-color-text-placeholder: #c0c4cc;
 
-	--border-color-base: #DCDFE6;
-	--border-color-light: #E4E7ED;
-	--border-color-lighter: #EBEEF5;
-	--border-color-extra-light: #F2F6FC;
+	--be-border-color-base: #DCDFE6;
+	--be-border-color-light: #E4E7ED;
+	--be-border-color-lighter: #EBEEF5;
+	--be-border-color-extra-light: #F2F6FC;
 
 	/* Background */
-	--background-color-base: #F5F7FA;
+	--be-background-color-base: #F5F7FA;
 
 	/* Link */
-	--link-color: var(--color-primary-light-2);
-	--link-hover-color: var(--color-primary);
+	--be-link-color: var(--be-color-primary-light-2);
+	--be-link-hover-color: var(--be-color-primary);
 
 	/* Border */
-	--border-width-base: 1px;
-	--border-style-base: solid;
-	--border-color-hover: var(--color-text-placeholder);
-	--border-base: var(--border-width-base) var(--border-style-base) var(--border-color-base);
-	--border-radius-circle: 100%;
-	--border-radius-zero: 0;
+	--be-border-width-base: 1px;
+	--be-border-style-base: solid;
+	--be-border-color-hover: var(--be-color-text-placeholder);
+	--be-border-base: var(--be-border-width-base) var(--be-border-style-base) var(--be-border-color-base);
+	--be-border-radius-circle: 100%;
+	--be-border-radius-zero: 0;
 
 	/* Box-shadow */
-	--box-shadow-base: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
-	--box-shadow-dark: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .12);
-	--box-shadow-light: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+	--be-box-shadow-base: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
+	--be-box-shadow-dark: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .12);
+	--be-box-shadow-light: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
 
 	/* Fill */
-	--fill-base: var(--color-white);
+	--be-fill-base: var(--be-color-white);
 
 	/* Typography 字体 */
-	--font-path: 'fonts';
-	--font-display: 'auto';
-	--font-size-extra-large: 20px;
-	--font-size-large: 18px;
-	--font-size-medium: 16px;
-	--font-size-base: 14px;
-	--font-size-small: 13px;
-	--font-size-extra-small: 12px;
-	--font-weight-primary: 500;
-	--font-weight-secondary: 100;
-	--font-line-height-primary: 24px;
-	--font-line-height-secondary: 16px;
-	--font-color-disabled-base: #bbb;
+	--be-font-path: 'fonts';
+	--be-font-display: 'auto';
+	--be-font-size-extra-large: 20px;
+	--be-font-size-large: 18px;
+	--be-font-size-medium: 16px;
+	--be-font-size-base: 14px;
+	--be-font-size-small: 13px;
+	--be-font-size-extra-small: 12px;
+	--be-font-weight-primary: 500;
+	--be-font-weight-secondary: 100;
+	--be-font-line-height-primary: 24px;
+	--be-font-line-height-secondary: 16px;
+	--be-font-color-disabled-base: #bbb;
 
 	/* size */
-	--size-base: 14px;
+	--be-size-base: 14px;
 
 	/* z-index */
-	--index-normal: 1;
-	--index-top: 1000;
-	--index-popper: 2000;
+	--be-index-normal: 1;
+	--be-index-top: 1000;
+	--be-index-popper: 2000;
 
 	/* Disable base*/
-	--disabled-fill-base: var(--background-color-base);
-	--disabled-color-base: var(--color-text-placeholder);
-	--disabled-border-base: var(--border-color-light);
+	--be-disabled-fill-base: var(--be-background-color-base);
+	--be-disabled-color-base: var(--be-color-text-placeholder);
+	--be-disabled-border-base: var(--be-border-color-light);
 
 	/* Scrollbar */
-	--scrollbar-background-color: var(--color-text-secondary);
-	--scrollbar-hover-background-color: rgba(var(--color-text-secondary), 0.5);
+	--be-scrollbar-background-color: var(--be-color-text-secondary);
+	--be-scrollbar-hover-background-color: rgba(var(--be-color-text-secondary), 0.5);
 
 	/* Header */
-	--header-padding: 0 20px;
+	--be-header-padding: 0 20px;
 
 	/* Footer */
-	--footer-padding: 0 20px;
+	--be-footer-padding: 0 20px;
 
 	/* Main */
-	--main-padding: 20px;
+	--be-main-padding: 20px;
 
 	/* Break-point */
-	--sm: 768px;
-	--md: 992px;
-	--lg: 1200px;
-	--xl: 1920px;
+	--be-sm: 768px;
+	--be-md: 992px;
+	--be-lg: 1200px;
+	--be-xl: 1920px;
 }
 
