@@ -1,10 +1,28 @@
 <template>
-	<el-button v-bind="$attrs" @click="handleClick($event)">{{ btnText }}</el-button>
+	<div>
+		<el-button v-if="confirmType === 'box'" v-bind="$attrs" @click="$_handleClick($event)">
+			<slot>删除</slot>
+		</el-button>
+
+		<el-popconfirm
+			v-if="confirmType === 'pop'"
+			:title="message"
+			v-bind="$attrs"
+			@onConfirm="$emit('confirm', $event)"
+			@onCancel="$emit('cancel', $event)"
+		>
+			<template v-slot:reference>
+				<el-button v-bind="popconfirmButtonAttrs">
+					<slot>删除</slot>
+				</el-button>
+			</template>
+		</el-popconfirm>
+	</div>
 </template>
 
 <script>
 export default {
-  name: 'BEConfirmButton',
+	name: 'BEConfirmButton',
 	props: {
 		title: {
 			type: String,
@@ -14,14 +32,18 @@ export default {
 			type: String,
 			default: '确定删除吗？'
 		},
-		btnText: {
+		confirmType: {
 			type: String,
-			default: '删除'
+			default: 'box' // 可选值：pop
+		},
+		popconfirmButtonAttrs: {
+			type: Object,
+			default: () => ({})
 		}
 	},
 
 	methods: {
-		handleClick(e) {
+		$_handleClick(e) {
 			this.$confirm(this.message, this.title, {
 				type: 'warning'
 			})
