@@ -2,5 +2,6 @@
 
 @import "./var.css";
 @import "./Components/Dialog.css";
+@import "./Components/OverflowTooltip.css";
 @import "./Components/StatusText.css";
 @import "./Components/Table.css";

@@ -1,0 +1,9 @@
+.be-overflow-tooltip {
+	display: inline-block;
+	width: 100%;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	line-height: 1;
+	vertical-align: middle;
+}
