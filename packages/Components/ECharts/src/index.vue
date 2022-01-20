@@ -7,6 +7,7 @@
 			:update-options="updateOptions"
 			:autoresize="autoresize"
 			:loading="loading"
+			v-bind="$attrs"
 		/>
 
 		<div v-else class="be-echarts__empty" v-html="empty"></div>
@@ -49,7 +50,8 @@ export default {
 	data() {
 		return {
 			chartId: 'chart_' + Date.now(),
-			chartOption: this.option
+			chartOption: this.option,
+			chart: null
 		}
 	},
 	computed: {
@@ -103,6 +105,9 @@ export default {
 			},
 			immediate: true
 		}
+	},
+	mounted() {
+		this.chart = this.$refs[this.chartId].chart;
 	}
 }
 </script>
