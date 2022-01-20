@@ -28,7 +28,7 @@ function genComponentIndex() {
             if (res.components.indexOf(file) === -1) {
                // ECharts 不自动生成导出，使用时手动导入
                if (file === 'ECharts') {
-                  return
+                  return res
                }
 
                res.components.push(file)
