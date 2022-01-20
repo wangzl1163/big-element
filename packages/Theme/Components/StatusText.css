@@ -1,0 +1,17 @@
+@import "../var.css";
+
+.be-status-text--primary {
+	color: var(--color-primary);
+}
+.be-status-text--success {
+	color: var(--color-success);
+}
+.be-status-text--warning {
+	color: var(--color-warning);
+}
+.be-status-text--danger {
+	color: var(--color-danger);
+}
+.be-status-text--info {
+	color: var(--color-info);
+}
