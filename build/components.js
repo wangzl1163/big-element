@@ -32,9 +32,9 @@ function genComponentIndex() {
                }
 
                res.components.push(file)
-               //   res.exports.push(`export { default as BE${file} } from './${file}'`)
+               //   res.exports.push(`export { default as Be${file} } from './${file}'`)
                res.exports.push(`export * from './${file}'`)
-               res.imports.push(`import { BE${file} } from './Components/${file}'`)
+               res.imports.push(`import { Be${file} } from './Components/${file}'`)
             }
             return res
          },
@@ -44,7 +44,7 @@ function genComponentIndex() {
    let content = '// This file is generated automatically by `npm run components`.\n' + res.exports.join('\n') + '\n'
    writeFileSync(resolve(componentDir, 'index.js'), content, 'utf8')
 
-   const str =  '// This file is generated automatically by `npm run components`.\n' + res.imports.join('\n') + '\n\n'+'export default [\n'+ res.components.map(file => '   BE'+file).join(',\n') +'\n]\n'
+   const str =  '// This file is generated automatically by `npm run components`.\n' + res.imports.join('\n') + '\n\n'+'export default [\n'+ res.components.map(file => '   Be'+file).join(',\n') +'\n]\n'
    writeFileSync(resolve(packageDir, 'component.js'), str)
 }
 

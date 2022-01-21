@@ -107,7 +107,7 @@ const getRowIdentity = (row, rowKey) => {
 };
 
 export default {
-	name: 'BETable',
+	name: 'BeTable',
 	props: {
 		border: {
 			type: Boolean,

@@ -22,7 +22,7 @@
 
 <script>
 export default {
-	name: 'BEConfirmButton',
+	name: 'BeConfirmButton',
 	props: {
 		title: {
 			type: String,

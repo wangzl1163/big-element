@@ -6,8 +6,8 @@
 		<p>
 			当 be-table 元素中注入 data 对象数组和 columns 列数组后，在 columns 中用 prop 属性来对应对象中的键名即可填入数据，用 label 属性来定义表格的列名。 可以使用 width 属性来定义列宽。更多属性可以参考 element-ui 或 element-plus 的组件说明。
 		</p>
-		<BETable :data="data" :columns="columns" :pageSize="2" :total="4" stripe isSelfPaging>
-		</BETable>
+		<BeTable :data="data" :columns="columns" :pageSize="2" :total="4" stripe isSelfPaging>
+		</BeTable>
 	</section>
 </template>
 

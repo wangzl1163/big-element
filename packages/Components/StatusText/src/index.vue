@@ -6,7 +6,7 @@
 
 <script>
 export default {
-	name: 'BEStatusText',
+	name: 'BeStatusText',
 	props: {
 		text: {
 			type: [Number, String],

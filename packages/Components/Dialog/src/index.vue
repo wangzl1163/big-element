@@ -32,7 +32,7 @@ import { isValidWidthUnit } from '../../../Utils/validators';
 import { isNumber } from '../../../Utils/util';
 
 export default {
-	name: 'BEDialog',
+	name: 'BeDialog',
 	props: {
 		visible: {
 			required: true,

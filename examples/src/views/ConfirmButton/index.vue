@@ -8,13 +8,13 @@
 		</p>
 
 		<div class="confirm-btn-list">
-			<BEConfirmButton title="提示" message="确认删除吗？" @cancel="handleCancel" @confirm="handleConfirm"> </BEConfirmButton>
+			<BeConfirmButton title="提示" message="确认删除吗？" @cancel="handleCancel" @confirm="handleConfirm"> </BeConfirmButton>
 
-			<BEConfirmButton type="primary" title="提示" message="确认删除吗？" @cancel="handleCancel" @confirm="handleConfirm">
+			<BeConfirmButton type="primary" title="提示" message="确认删除吗？" @cancel="handleCancel" @confirm="handleConfirm">
 				点我展示message box的 confirm
-			</BEConfirmButton>
+			</BeConfirmButton>
 
-			<BEConfirmButton
+			<BeConfirmButton
 				confirmType="pop"
 				:popconfirmButtonAttrs="{ type: 'primary' }"
 				message="确认删除吗？"
@@ -22,7 +22,7 @@
 				@confirm="handleConfirm"
 			>
 				点我展示popconfirm
-			</BEConfirmButton>
+			</BeConfirmButton>
 		</div>
 	</section>
 </template>
