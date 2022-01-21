@@ -1,6 +1,6 @@
 <template>
-	<span :class="'be-status-text--' + type" :style="{ cursor: cursor }" @click="handleClick">
-		{{ text }}
+	<span :class="'be-status-text--' + type" :style="{ cursor: cursor }" @click="$_handleClick">
+		{{ content }}
 	</span>
 </template>
 
@@ -8,7 +8,7 @@
 export default {
 	name: 'BeStatusText',
 	props: {
-		text: {
+		content: {
 			type: [Number, String],
 			default: ''
 		},
@@ -22,7 +22,7 @@ export default {
 		}
 	},
 	methods: {
-		handleClick(e) {
+		$_handleClick(e) {
 			this.$emit('click', e)
 		}
 	}
