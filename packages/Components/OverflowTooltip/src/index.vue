@@ -1,24 +1,36 @@
 <template>
-	<div class="be-overflow-tooltip" :style="{ maxWidth: maxWidth }">
-		<span :id="id">
-			{{ content }}
-		</span>
-		<el-tooltip placement="top" ref="tooltip" :content="tooltipContent"></el-tooltip>
-	</div>
+	<el-tooltip ref="tooltip" v-bind="$attrs" v-model="tooltipVisible" :disabled="!tooltipVisible" placement="top" :content="tooltipContent">
+		<div class="be-overflow-tooltip" :style="{ maxWidth:  realMaxWidth }" @mouseenter="$_handleMouseEnter">
+			<span :id="id">
+				{{ content }}
+			</span>
+		</div>
+	</el-tooltip>
 </template>
 
 <script>
+import { isNumber } from '../../../Utils/util';
+
 export default {
+	name: 'BeOverflowTooltip',
 	props: {
 		content: [String, Number, Boolean],
 		maxWidth: {
-			type: String
+			type: [Number, String]
 		}
 	},
 	data() {
 		return {
 			id: Math.random().toString(36).slice(2),
-			tooltipContent: ''
+			tooltipContent: '',
+			tooltipVisible: false,
+			offset: 0
+		}
+	},
+
+	computed: {
+		realMaxWidth(){
+			return isNumber(this.maxWidth) ? this.maxWidth + 'px' : this.maxWidth
 		}
 	},
 
@@ -27,7 +39,7 @@ export default {
 	},
 
 	methods: {
-		handleMouseEnter() {
+		$_handleMouseEnter() {
 			const el = document.getElementById(this.id)
 			const elComputed = document.defaultView.getComputedStyle(el, '')
 			const padding = parseInt(elComputed.paddingLeft.replace('px', '')) + parseInt(elComputed.paddingRight.replace('px', ''))
@@ -36,22 +48,11 @@ export default {
 			range.setStart(el, 0)
 			range.setEnd(el, el.childNodes.length)
 			const rangeWidth = range.getBoundingClientRect().width
-
-			if ((rangeWidth + padding > el.offsetWidth || el.scrollWidth > el.offsetWidth) && this.$refs.tooltip) {
-				const tooltip = this.$refs.tooltip
+			const realWidth = rangeWidth + padding
+			if ((realWidth > el.offsetWidth || el.scrollWidth > el.offsetWidth) && this.$refs.tooltip) {
+				this.offset = el.offsetWidth / 2 //realWidth - el.offsetWidth > realWidth / 2 ? el.offsetWidth / 2 :
 				this.tooltipContent = this.content
-				tooltip.referenceElm = el.parentElement
-				tooltip.$refs.popper && (tooltip.$refs.popper.style.display = 'none')
-				;tooltip.doDestroy()
-				tooltip.setExpectedState(true)
-				// 防抖
-				if (!this.timerId) {
-					this.timerId = setTimeout(() => {
-						tooltip.handleShowPopper()
-						
-						this.timerId = undefined
-					}, 50);
-				}
+				this.tooltipVisible = true
 			}
 		}
 	}
