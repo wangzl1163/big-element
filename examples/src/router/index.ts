@@ -23,6 +23,11 @@ const router = createRouter({
 			meta: {title: 'Dialog'}
 		},
 		{
+			path: '/overflowTooltip',
+			component: () => import('@/views/OverflowTooltip/index.vue'),
+			meta: {title: 'OverflowTooltip'}
+		},
+		{
 			path: '/table',
 			component: () => import('@/views/Table/index.vue'),
 			meta: {title: 'Table'}
