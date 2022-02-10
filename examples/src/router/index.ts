@@ -28,6 +28,11 @@ const router = createRouter({
 			meta: {title: 'OverflowTooltip'}
 		},
 		{
+			path: '/passwordView',
+			component: () => import('@/views/PasswordView/index.vue'),
+			meta: {title: 'PasswordView'}
+		},
+		{
 			path: '/statusText',
 			component: () => import('@/views/StatusText/index.vue'),
 			meta: {title: 'StatusText'}
