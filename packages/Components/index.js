@@ -2,5 +2,6 @@
 export * from './ConfirmButton'
 export * from './Dialog'
 export * from './OverflowTooltip'
+export * from './PasswordView'
 export * from './StatusText'
 export * from './Table'
