@@ -38,7 +38,7 @@
 	--be-border-color-extra-light: #F2F6FC;
 
 	/* Background */
-	--be-background-color-base: #F5F7FA;
+	--be-bg-color-base: #F5F7FA;
 
 	/* Link */
 	--be-link-color: var(--be-color-primary-light-2);
@@ -84,13 +84,13 @@
 	--be-index-popper: 2000;
 
 	/* Disable base*/
-	--be-disabled-fill-base: var(--be-background-color-base);
+	--be-disabled-fill-base: var(--be-bg-color-base);
 	--be-disabled-color-base: var(--be-color-text-placeholder);
 	--be-disabled-border-base: var(--be-border-color-light);
 
 	/* Scrollbar */
-	--be-scrollbar-background-color: var(--be-color-text-secondary);
-	--be-scrollbar-hover-background-color: rgba(var(--be-color-text-secondary), 0.5);
+	--be-scrollbar-bg-color: var(--be-color-text-secondary);
+	--be-scrollbar-hover-bg-color: rgba(var(--be-color-text-secondary), 0.5);
 
 	/* Header */
 	--be-header-padding: 0 20px;

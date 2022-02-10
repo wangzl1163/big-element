@@ -1,3 +1,4 @@
+@import "../var.css";
 .be-dialog {
 	--dialog-border-color:#e8eaec;
 }
