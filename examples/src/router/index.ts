@@ -33,6 +33,11 @@ const router = createRouter({
 			meta: {title: 'OverflowTooltip'}
 		},
 		{
+			path: '/passwordInput',
+			component: () => import('@/views/PasswordInput/index.vue'),
+			meta: {title: 'PasswordInput'}
+		},
+		{
 			path: '/passwordView',
 			component: () => import('@/views/PasswordView/index.vue'),
 			meta: {title: 'PasswordView'}
