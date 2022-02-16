@@ -4,5 +4,3 @@ import Button from './src/index.vue';
 
 export const BeConfirmButton = withInstall(Button)
 export default BeConfirmButton
-
-export * from './src/index.vue'
