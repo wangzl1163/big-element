@@ -30,6 +30,7 @@ npm install big-element
 ```
 
 2、快速上手
+这里以 Vue3 为开发环境作为示例。
 > 在开始前先安装 element-ui 或者 element-plus
 
 2.1 概念
@@ -67,7 +68,7 @@ import Router from './router';
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 // 引入组件库
-import { BETable, BEDialog } from 'big-element';
+import { BeTable, BeDialog } from 'big-element';
 // 引入样式
 import 'big-element/packages/Theme/index.css'
 import App from './App.vue'
@@ -76,8 +77,8 @@ const app = createApp(App)
 
 app.use(Router)
 app.use(ElementPlus)
-app.use(BETable)
-app.use(BEDialog)
+app.use(BeTable)
+app.use(BeDialog)
 app.mount('#app')
 ```
 
@@ -91,7 +92,7 @@ import Router from './router';
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 // 引入组件
-import BEECharts from 'big-element/packages/Components/ECharts';
+import BeECharts from 'big-element/packages/Components/ECharts';
 // 引入样式
 import 'big-element/packages/Theme/Components/ECharts.css'
 import App from './App.vue'
@@ -100,6 +101,6 @@ const app = createApp(App)
 
 app.use(Router)
 app.use(ElementPlus)
-app.use(BEECharts)
+app.use(BeECharts)
 app.mount('#app')
 ```
