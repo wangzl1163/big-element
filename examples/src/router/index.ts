@@ -18,6 +18,11 @@ const router = createRouter({
 			meta: {title: 'ConfirmButton'}
 		},
 		{
+			path: '/datePicker',
+			component: () => import('@/views/DatePicker/index.vue'),
+			meta: {title: 'DatePicker'}
+		},
+		{
 			path: '/dialog',
 			component: () => import('@/views/Dialog/index.vue'),
 			meta: {title: 'Dialog'}
