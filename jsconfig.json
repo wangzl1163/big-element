@@ -2,6 +2,8 @@
 	"compilerOptions": {
     "baseUrl": "./",
     "paths": { "@/*": ["packages/*"] },
+    "target": "esnext",
+    "module": "ESNext",
     "allowJs": true
   },
   "exclude": ["node_modules", "dist"]
