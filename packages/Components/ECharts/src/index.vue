@@ -55,6 +55,9 @@ export default {
 		}
 	},
 	computed: {
+		chart: function () {
+			return this.$refs[this.chartId].chart
+		},
 		hasData: function () {
 			// 在option被赋值为非空对象之前不做是否有数据判断
 			if (this.option.series) {
@@ -105,9 +108,6 @@ export default {
 			},
 			immediate: true
 		}
-	},
-	mounted() {
-		this.chart = this.$refs[this.chartId].chart
 	}
 }
 </script>
