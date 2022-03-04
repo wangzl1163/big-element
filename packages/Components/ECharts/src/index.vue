@@ -50,8 +50,7 @@ export default {
 	data() {
 		return {
 			chartId: 'chart_' + Date.now(),
-			chartOption: this.option,
-			chart: null
+			chartOption: this.option
 		}
 	},
 	computed: {
