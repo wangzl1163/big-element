@@ -90,12 +90,12 @@ export default {
 
 						this.chartOption.xAxis = {
 							...this.chartOption.xAxis,
-							...axisSetting[this.chartOption.xAxis.type]
+							...(this.chartOption.xAxis ? axisSetting[this.chartOption.xAxis.type] : {})
 						}
 
 						this.chartOption.yAxis = {
 							...this.chartOption.yAxis,
-							...axisSetting[this.chartOption.yAxis.type],
+							...(this.chartOption.yAxis ? axisSetting[this.chartOption.yAxis.type] : {}),
 							splitLine: {
 								show: false
 							}
@@ -107,7 +107,7 @@ export default {
 		}
 	},
 	mounted() {
-		this.chart = this.$refs[this.chartId].chart;
+		this.chart = this.$refs[this.chartId].chart
 	}
 }
 </script>
