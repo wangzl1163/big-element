@@ -2,26 +2,24 @@
 	<div>
 		<el-table
 			:ref="tableRef"
-         class="be-table"
-         v-bind="$attrs"
+			class="be-table"
+			v-bind="$attrs"
 			v-loading="loading"
-			:row-class-name="border ? rowClassName : 'be-table__row--bt '+rowClassName"
+			:row-class-name="border ? rowClassName : 'be-table__row--bt ' + rowClassName"
 			:border="border"
-			:data="isSelfPaging
-          ? data.slice((pageNo - 1) * pageCount, pageNo * pageCount)
-          : data"
+			:data="isSelfPaging ? data.slice((pageNo - 1) * pageCount, pageNo * pageCount) : data"
 			:show-header="showHeader"
 			:height="height"
 			:header-row-class-name="headerRowClassName"
 			:header-cell-class-name="headerCellClassName"
 			:highlight-current-row="highlightCurrentRow"
 			:span-method="spanMethod"
-         :expand-row-keys="expandRowKeyList"
+			:expand-row-keys="expandRowKeyList"
 			@current-change="$_handleCurrentRowChange"
 			@row-click="$_handleRowClick"
 			@sort-change="$_handleSortChange"
 			@selection-change="$_handleSelectionChange"
-         @expand-change="$_handleExpandChange"
+			@expand-change="$_handleExpandChange"
 		>
 			<template v-for="item in columns">
 				<template v-if="item.render">
@@ -92,19 +90,19 @@
 import SlotRender from './SlotRender'
 
 const getRowIdentity = (row, rowKey) => {
-   if (rowKey.indexOf(".") === -1) {
-      return row[rowKey];
-   }
+	if (rowKey.indexOf('.') === -1) {
+		return row[rowKey]
+	}
 
-   const keys = rowKey.split(".");
-   let val = row;
+	const keys = rowKey.split('.')
+	let val = row
 
-   keys.forEach((key) => {
-      val = val[key];
-   });
+	keys.forEach((key) => {
+		val = val[key]
+	})
 
-   return val;
-};
+	return val
+}
 
 export default {
 	name: 'BeTable',
@@ -122,15 +120,15 @@ export default {
 			type: Array
 		},
 		rowClassName: {
-			type: Function | String
+			type: [Function, String]
 		},
 		showHeader: {
 			type: Boolean,
 			default: true
 		},
-		headerRowClassName: Function | String,
-		headerCellClassName: Function | String,
-		height: String | Number,
+		headerRowClassName: [Function, String],
+		headerCellClassName: [Function, String],
+		height: [String, Number],
 		pageIndex: {
 			type: Number,
 			default: 1
@@ -161,23 +159,23 @@ export default {
 			type: Boolean,
 			default: false
 		},
-      expandRowKeys: {
-         type: Array
-      },
-      rowClick2Expand: {
-         // 点击当前行是否展开折叠的内容
-         type: Boolean,
-         default: false
-      }
+		expandRowKeys: {
+			type: Array
+		},
+		rowClick2Expand: {
+			// 点击当前行是否展开折叠的内容
+			type: Boolean,
+			default: false
+		}
 	},
-   emits: ['pageSizeChange','pageChange','currentRowChange','rowClick','expandChange','selectionChange',],
+	emits: ['pageSizeChange', 'pageChange', 'currentRowChange', 'rowClick', 'expandChange', 'selectionChange'],
 	data() {
 		return {
 			tableRef: 'table_' + Date.now(),
 			loading: false,
 			pageNo: this.pageIndex,
 			pageCount: this.pageSize,
-         expandRowKeyList: this.expandRowKeys,
+			expandRowKeyList: this.expandRowKeys
 		}
 	},
 	components: { SlotRender },
@@ -260,33 +258,29 @@ export default {
 			this.$emit('currentRowChange', val, oldCurrentRow)
 		},
 		$_handleRowClick(row, column, event) {
-         // event.path[1].type !== "button"，屏蔽掉行内的操作按钮点击事件
-         if (this.rowClick2Expand && event.path[1].type !== "button") {
-            if (this.expandRowKeyList.length !== 0) {
-               // 无则添加，有则删除
-               const rowIdentity = getRowIdentity(row, this.rowKey);
-               this.expandRowKeyList = this.expandRowKeyList.includes(
-                  rowIdentity
-               )
-                  ? this.expandRowKeyList.filter((item) => item !== rowIdentity)
-                  : this.expandRowKeyList.concat([rowIdentity]);
-            } else {
-               this.expandRowKeyList = [getRowIdentity(row, this.rowKey)];
-            }
-         }
+			// event.path[1].type !== "button"，屏蔽掉行内的操作按钮点击事件
+			if (this.rowClick2Expand && event.path[1].type !== 'button') {
+				if (this.expandRowKeyList.length !== 0) {
+					// 无则添加，有则删除
+					const rowIdentity = getRowIdentity(row, this.rowKey)
+					this.expandRowKeyList = this.expandRowKeyList.includes(rowIdentity)
+						? this.expandRowKeyList.filter((item) => item !== rowIdentity)
+						: this.expandRowKeyList.concat([rowIdentity])
+				} else {
+					this.expandRowKeyList = [getRowIdentity(row, this.rowKey)]
+				}
+			}
 
 			this.$emit('rowClick', row, column, event)
 		},
 		$_handleExpandChange(row, val) {
-         if (this.rowClick2Expand) {
-            if (val.length === 0) {
-               this.expandRowKeyList = [];
-            } else {
-               this.expandRowKeyList = val.map((item) =>
-                  getRowIdentity(item, this.rowKey)
-               );
-            }
-         }
+			if (this.rowClick2Expand) {
+				if (val.length === 0) {
+					this.expandRowKeyList = []
+				} else {
+					this.expandRowKeyList = val.map((item) => getRowIdentity(item, this.rowKey))
+				}
+			}
 
 			this.$emit('expandChange', row, val)
 		},
