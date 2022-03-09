@@ -1,10 +1,10 @@
 import { vueVersion } from '../../../Store/index'
 
-let FunctionalComponent = null
+let TableColumnSlotRender = null
 let name = 'TableColumnSlotRender'
 
 if (vueVersion.isVue2()) {
-	FunctionalComponent = {
+	TableColumnSlotRender = {
 		name,
 		props: {
 			row: Object,
@@ -16,8 +16,8 @@ if (vueVersion.isVue2()) {
 			}
 		}
 	}
-	FunctionalComponent.functional = true
-	FunctionalComponent.render = (h, ctx) => {
+	TableColumnSlotRender.functional = true
+	TableColumnSlotRender.render = (h, ctx) => {
 		const params = {
 			row: ctx.props.row,
 			index: ctx.props.index
@@ -31,7 +31,7 @@ if (vueVersion.isVue2()) {
 }
 
 if (vueVersion.isVue3()) {
-	FunctionalComponent = (props, context) => {
+	TableColumnSlotRender = (props, context) => {
 		let params = {
 			row: props.row,
 			index: props.index
@@ -45,7 +45,7 @@ if (vueVersion.isVue3()) {
 
 		return render(params)
 	}
-	FunctionalComponent.props = {
+	TableColumnSlotRender.props = {
 		row: Object,
 		render: Function,
 		index: Number,
@@ -54,7 +54,6 @@ if (vueVersion.isVue3()) {
 			default: null
 		}
 	}
-	FunctionalComponent.name = name
 }
 
-export default FunctionalComponent
+export default TableColumnSlotRender

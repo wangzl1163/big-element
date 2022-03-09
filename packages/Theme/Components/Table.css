@@ -1,3 +1,12 @@
-.be-table__row--bt:last-child td{
+.be-table__row--bt:last-child td {
 	border-bottom: none;
+}
+
+.be-pagination {
+	margin-top: 20px;
+	text-align: right;
+}
+
+.be-pagination .el-pagination {
+	display: inline-flex;
 }

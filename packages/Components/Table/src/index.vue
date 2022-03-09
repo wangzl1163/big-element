@@ -25,9 +25,7 @@
 				<template v-if="item.render">
 					<el-table-column
 						v-if="item.renderHeader"
-						:prop="item.prop"
 						:sortable="item.sortable ? item.sortable : false"
-						:key="item.prop"
 						:align="item.align"
 						:width="item.width"
 						:min-width="item.minWidth"
@@ -40,10 +38,8 @@
 					</el-table-column>
 					<el-table-column
 						v-else
-						:prop="item.prop"
 						:label="item.label"
 						:sortable="item.sortable ? item.sortable : false"
-						:key="item.prop + Date.now()"
 						:align="item.align"
 						:width="item.width"
 						:min-width="item.minWidth"
@@ -72,7 +68,7 @@
 			</template>
 		</el-table>
 
-		<div v-if="showPagination" style="margin-top: 20px; text-align: right">
+		<div v-if="showPagination" class="be-pagination">
 			<el-pagination
 				@size-change="$_handleSizeChange"
 				@current-change="$_handlePageChange"
