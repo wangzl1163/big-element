@@ -76,7 +76,7 @@
 				:page-sizes="pageSizes"
 				:page-size="pageCount"
 				layout="total, sizes, prev, pager, next, jumper"
-				:total="total"
+				:total="isSelfPaging ? data.length : total"
 			>
 			</el-pagination>
 		</div>
