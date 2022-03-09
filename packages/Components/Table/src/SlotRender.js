@@ -43,6 +43,7 @@ if (vueVersion.isVue3()) {
 
 		const render = props.render.bind(context)
 
+		// 当 index 为 -1 时渲染的是表格的表头，因此不用执行表中行的渲染函数
 		return props.index !== -1 && render(params)
 	}
 	TableColumnSlotRender.props = {
