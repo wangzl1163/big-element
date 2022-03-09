@@ -43,7 +43,7 @@ if (vueVersion.isVue3()) {
 
 		const render = props.render.bind(context)
 
-		return render(params)
+		return props.index !== -1 && render(params)
 	}
 	TableColumnSlotRender.props = {
 		row: Object,
