@@ -19,7 +19,7 @@
 <script>
 import VECharts from './echarts.js'
 export default {
-	name: 'BeECharts',
+	name: 'BeEcharts',
 	components: { VECharts },
 	props: {
 		option: {

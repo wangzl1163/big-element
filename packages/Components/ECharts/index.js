@@ -1,6 +1,6 @@
-import { withInstall } from '../../Utils/withInstall';
+import { withInstall } from '../../Utils/withInstall'
 
-import ECharts from './src/index.vue';
+import echarts from './src/index.vue'
 
-export const BeECharts = withInstall(ECharts)
-export default BeECharts
+export const BeEcharts = withInstall(echarts)
+export default BeEcharts
