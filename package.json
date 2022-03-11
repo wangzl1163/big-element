@@ -1,6 +1,6 @@
 {
 	"name": "big-element",
-	"version": "1.0.0-beta.11",
+	"version": "1.0.0-beta.12",
 	"description": "A component library based on element-ui and element-plus.",
 	"main": "packages/index.js",
 	"repository": {
