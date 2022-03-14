@@ -37,6 +37,20 @@
 						</template>
 					</el-table-column>
 					<el-table-column
+						v-else-if="item.type === 'expand'"
+						:sortable="item.sortable ? item.sortable : false"
+						:align="item.align"
+						:width="item.width"
+						:min-width="item.minWidth"
+						:render-header="item.renderHeader"
+						:class-name="item.className"
+						:type="item.type"
+					>
+						<template v-slot="params">
+							<SlotRender :render="item.render" :column="item" :row="params.row" :index="params.$index"></SlotRender>
+						</template>
+					</el-table-column>
+					<el-table-column
 						v-else
 						:label="item.label"
 						:sortable="item.sortable ? item.sortable : false"
@@ -53,6 +67,7 @@
 
 				<el-table-column
 					v-else
+					:type="item.type"
 					:prop="item.prop"
 					:label="item.label"
 					:key="item.prop"
