@@ -14,6 +14,7 @@
 			:header-cell-class-name="headerCellClassName"
 			:highlight-current-row="highlightCurrentRow"
 			:span-method="spanMethod"
+			:row-key="rowKey"
 			:expand-row-keys="expandRowKeyList"
 			@current-change="$_handleCurrentRowChange"
 			@row-click="$_handleRowClick"
@@ -170,11 +171,19 @@ export default {
 			type: Boolean,
 			default: false
 		},
+		rowKey: {
+			type: String
+		},
 		expandRowKeys: {
 			type: Array
 		},
 		rowClick2Expand: {
 			// 点击当前行是否展开折叠的内容
+			type: Boolean,
+			default: false
+		},
+		accordion: {
+			// 是否每次只展开一行，即手风琴模式，为 true 时需要设置 rowKey
 			type: Boolean,
 			default: false
 		}
@@ -269,27 +278,45 @@ export default {
 			this.$emit('currentRowChange', val, oldCurrentRow)
 		},
 		$_handleRowClick(row, column, event) {
+			// row click 与 expand change 是互不干扰的，点击行时不会触发 expand change。
+
 			// event.path[1].type !== "button"，屏蔽掉行内的操作按钮点击事件
 			if (this.rowClick2Expand && event.path[1].type !== 'button') {
-				if (this.expandRowKeyList.length !== 0) {
-					// 无则添加，有则删除
-					const rowIdentity = getRowIdentity(row, this.rowKey)
-					this.expandRowKeyList = this.expandRowKeyList.includes(rowIdentity)
-						? this.expandRowKeyList.filter((item) => item !== rowIdentity)
-						: this.expandRowKeyList.concat([rowIdentity])
+				const rowIdentity = getRowIdentity(row, this.rowKey)
+				if (this.accordion) {
+					if (this.expandRowKeyList.length !== 0) {
+						// 有则删除，无则替换
+						this.expandRowKeyList = this.expandRowKeyList.includes(rowIdentity) ? [] : [rowIdentity]
+					} else {
+						this.expandRowKeyList = [getRowIdentity(row, this.rowKey)]
+					}
 				} else {
-					this.expandRowKeyList = [getRowIdentity(row, this.rowKey)]
+					if (this.expandRowKeyList.length !== 0) {
+						// 无则添加，有则删除
+						this.expandRowKeyList = this.expandRowKeyList.includes(rowIdentity)
+							? this.expandRowKeyList.filter((item) => item !== rowIdentity)
+							: this.expandRowKeyList.concat([rowIdentity])
+					} else {
+						this.expandRowKeyList = [getRowIdentity(row, this.rowKey)]
+					}
 				}
 			}
 
 			this.$emit('rowClick', row, column, event)
 		},
 		$_handleExpandChange(row, val) {
-			if (this.rowClick2Expand) {
-				if (val.length === 0) {
-					this.expandRowKeyList = []
-				} else {
-					this.expandRowKeyList = val.map((item) => getRowIdentity(item, this.rowKey))
+			const expanded = val.map((item) => getRowIdentity(item, this.rowKey))
+
+			if (this.accordion) {
+				const rowIdentity = getRowIdentity(row, this.rowKey)
+				this.expandRowKeyList = val.length > 0 ? expanded.filter((ex) => ex === rowIdentity) : []
+			} else {
+				if (this.rowClick2Expand) {
+					if (val.length === 0) {
+						this.expandRowKeyList = []
+					} else {
+						this.expandRowKeyList = expanded
+					}
 				}
 			}
 
