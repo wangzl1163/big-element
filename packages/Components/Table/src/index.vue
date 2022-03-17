@@ -78,6 +78,7 @@
 					:min-width="item.minWidth"
 					:render-header="item.renderHeader"
 					:class-name="item.className"
+					:formatter="item.formatter"
 					show-overflow-tooltip
 				>
 				</el-table-column>
