@@ -92,7 +92,7 @@
 				:current-page="pageNo"
 				:page-sizes="pageSizes"
 				:page-size="pageCount"
-				layout="total, sizes, prev, pager, next, jumper"
+				:layout="pageLayout"
 				:total="isSelfPaging ? data.length : total"
 			>
 			</el-pagination>
@@ -142,26 +142,6 @@ export default {
 		headerRowClassName: [Function, String],
 		headerCellClassName: [Function, String],
 		height: [String, Number],
-		pageIndex: {
-			type: Number,
-			default: 1
-		},
-		pageSizes: {
-			type: Array,
-			default: () => [10, 20, 30, 40, 50]
-		},
-		pageSize: {
-			type: Number,
-			default: 10
-		},
-		total: {
-			type: Number,
-			default: 0
-		},
-		showPagination: {
-			type: Boolean,
-			default: true
-		},
 		highlightCurrentRow: {
 			type: Boolean,
 			default: false
@@ -187,6 +167,30 @@ export default {
 			// 是否每次只展开一行，即手风琴模式，为 true 时需要设置 rowKey
 			type: Boolean,
 			default: false
+		},
+		pageIndex: {
+			type: Number,
+			default: 1
+		},
+		pageSizes: {
+			type: Array,
+			default: () => [10, 20, 30, 40, 50]
+		},
+		pageSize: {
+			type: Number,
+			default: 10
+		},
+		total: {
+			type: Number,
+			default: 0
+		},
+		pageLayout: {
+			type: String,
+			default: 'total, sizes, prev, pager, next, jumper'
+		},
+		showPagination: {
+			type: Boolean,
+			default: true
 		}
 	},
 	emits: ['pageSizeChange', 'pageChange', 'currentRowChange', 'rowClick', 'expandChange', 'selectionChange'],
