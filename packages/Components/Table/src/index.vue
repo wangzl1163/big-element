@@ -327,17 +327,17 @@ export default {
 			this.$emit('rowClick', row, column, event)
 		},
 		$_handleExpandChange(row, val) {
-			const expanded = val.map((item) => getRowIdentity(item, this.rowKey))
+			const expanded = (columns) => columns.map((item) => getRowIdentity(item, this.rowKey))
 
-			if (this.accordion) {
+			if (this.accordion && this.rowKey) {
 				const rowIdentity = getRowIdentity(row, this.rowKey)
-				this.expandRowKeyList = val.length > 0 ? expanded.filter((ex) => ex === rowIdentity) : []
+				this.expandRowKeyList = val.length > 0 ? expanded(val).filter((ex) => ex === rowIdentity) : []
 			} else {
-				if (this.rowClick2Expand) {
+				if (this.rowClick2Expand && this.rowKey) {
 					if (val.length === 0) {
 						this.expandRowKeyList = []
 					} else {
-						this.expandRowKeyList = expanded
+						this.expandRowKeyList = expanded(val)
 					}
 				}
 			}
