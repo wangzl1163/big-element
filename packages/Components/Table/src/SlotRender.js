@@ -52,7 +52,7 @@ if (vueVersion.isVue3()) {
 		index: Number,
 		column: {
 			type: Object,
-			default: null
+			default: () => null
 		}
 	}
 }

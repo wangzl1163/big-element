@@ -16,6 +16,7 @@
 			:span-method="spanMethod"
 			:row-key="rowKey"
 			:expand-row-keys="expandRowKeyList"
+			:default-sort="computedDefaultSort"
 			@current-change="$_handleCurrentRowChange"
 			@row-click="$_handleRowClick"
 			@sort-change="$_handleSortChange"
@@ -34,7 +35,7 @@
 						:class-name="item.className"
 					>
 						<template v-slot="params">
-							<SlotRender :render="item.render" :column="item" :row="params.row" :index="params.$index"></SlotRender>
+							<SlotRender :render="item.render" :column="params.column" :row="params.row" :index="params.$index"></SlotRender>
 						</template>
 					</el-table-column>
 					<el-table-column
@@ -48,7 +49,7 @@
 						:type="item.type"
 					>
 						<template v-slot="params">
-							<SlotRender :render="item.render" :column="item" :row="params.row" :index="params.$index"></SlotRender>
+							<SlotRender :render="item.render" :column="params.column" :row="params.row" :index="params.$index"></SlotRender>
 						</template>
 					</el-table-column>
 					<el-table-column
@@ -61,7 +62,7 @@
 						:class-name="item.className"
 					>
 						<template v-slot="params">
-							<SlotRender :render="item.render" :column="item" :row="params.row" :index="params.$index"></SlotRender>
+							<SlotRender :render="item.render" :column="params.column" :row="params.row" :index="params.$index"></SlotRender>
 						</template>
 					</el-table-column>
 				</template>
@@ -168,6 +169,13 @@ export default {
 			type: Boolean,
 			default: false
 		},
+		defaultSort: {
+			type: Object,
+			default: () => undefined,
+			validator(value) {
+				return !!value.prop
+			}
+		},
 		pageIndex: {
 			type: Number,
 			default: 1
@@ -193,7 +201,7 @@ export default {
 			default: true
 		}
 	},
-	emits: ['pageSizeChange', 'pageChange', 'currentRowChange', 'rowClick', 'expandChange', 'selectionChange'],
+	emits: ['pageSizeChange', 'pageChange', 'currentRowChange', 'rowClick', 'expandChange', 'selectionChange', 'sortChange'],
 	data() {
 		return {
 			tableRef: 'table_' + Date.now(),
@@ -204,6 +212,14 @@ export default {
 		}
 	},
 	components: { SlotRender },
+	computed: {
+		computedDefaultSort() {
+			return {
+				order: 'ascending',
+				...this.defaultSort
+			}
+		}
+	},
 	watch: {
 		pageIndex: function (val) {
 			this.pageNo = val
@@ -217,18 +233,19 @@ export default {
 	},
 	methods: {
 		$_handleSortChange: function (params) {
-			// 非前端排序
-			if (!this.isSelfPaging) {
+			// isSelfPaging 为 true 时前端自己分页排序自然也是前端自己进行，因为所有数据都在前端；
+			// 为 false 时如果 sortable === 'custom' 则为后端排序与 el-table 逻辑一致，可参见官方文档
+			const sortable = params?.column?.sortable ?? null
+			if (!this.isSelfPaging && sortable === 'custom') {
 				let order = params.column.order || ''
 				let column = {
 					order: order.replace('ending', ''),
 					key: params.column.property
 				}
-
 				this.$emit('sortChange', column)
 			} else {
 				const handleSort = ({ order }) => {
-					if (order === null) {
+					if (order === null || !this.defaultSort?.prop) {
 						return
 					}
 
@@ -236,11 +253,11 @@ export default {
 					const reverse = order === 'descending' ? -1 : 1
 
 					if (order === 'ascending') {
-						this.tableData.sort((a, b) => compare(a.createDatetime, b.createDatetime))
+						this.data.sort((a, b) => compare(a[this.defaultSort.prop], b[this.defaultSort.prop]))
 					}
 
 					if (order === 'descending') {
-						this.tableData.sort((a, b) => compare(a.createDatetime, b.createDatetime) * reverse)
+						this.data.sort((a, b) => compare(a[this.defaultSort.prop], b[this.defaultSort.prop]) * reverse)
 					}
 
 					function compare(v1, v2) {
@@ -258,7 +275,7 @@ export default {
 					}
 				}
 
-				handleSort(val)
+				handleSort(params)
 			}
 		},
 		$_handleSizeChange(val) {
