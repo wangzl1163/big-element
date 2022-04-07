@@ -303,7 +303,7 @@ export default {
 			// row click 与 expand change 是互不干扰的，点击行时不会触发 expand change。
 
 			// event.path[1].type !== "button"，屏蔽掉行内的操作按钮点击事件
-			if (this.rowClick2Expand && event.path[1].type !== 'button') {
+			if (this.rowClick2Expand && this.rowKey && event.path[1].type !== 'button') {
 				const rowIdentity = getRowIdentity(row, this.rowKey)
 				if (this.accordion) {
 					if (this.expandRowKeyList.length !== 0) {
