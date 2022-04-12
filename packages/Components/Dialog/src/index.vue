@@ -20,7 +20,7 @@
 		<template v-slot:footer v-if="$slots.footer">
 			<slot name="footer"></slot>
 		</template>
-		<template v-slot:footer v-else>
+		<template v-slot:footer v-else-if="showFooter">
 			<el-button v-if="showCancel" @click="cancel">{{ cancelText }}</el-button>
 			<el-button type="primary" :loading="loading" @click="confirm">{{ confirmText }}</el-button>
 		</template>
@@ -28,8 +28,8 @@
 </template>
 <script>
 import { vueVersion } from '../../../Store/index'
-import { isValidWidthUnit } from '../../../Utils/validators';
-import { isNumber } from '../../../Utils/util';
+import { isValidWidthUnit } from '../../../Utils/validators'
+import { isNumber } from '../../../Utils/util'
 
 export default {
 	name: 'BeDialog',
@@ -62,6 +62,11 @@ export default {
 		customClass: {
 			type: String,
 			default: ''
+		},
+		showFooter: {
+			// footer 非 slot 时是否显示内置的 footer
+			type: Boolean,
+			default: true
 		},
 		showCancel: {
 			// footer 非 slot 时生效
@@ -102,7 +107,7 @@ export default {
 				}
 			}
 		},
-		dialogWidth(){
+		dialogWidth() {
 			return isNumber(this.width) ? this.width + 'px' : this.width
 		}
 	},
