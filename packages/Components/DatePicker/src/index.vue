@@ -1,7 +1,7 @@
 <template>
 	<div class="be-date-picker" :class="computedDisplayStyle">
 		<div v-if="pickerShortcuts.length === 0" class="be-date-picker__radio">
-			<el-radio-group v-model="radioShortCut" @change="radioChange">
+			<el-radio-group v-model="radioShortCut" @change="$_radioChange">
 				<el-radio-button v-for="item in shortCuts" :key="item.value" :label="item.value">{{ item.name }}</el-radio-button>
 			</el-radio-group>
 		</div>
@@ -11,18 +11,18 @@
 				v-bind="attrs"
 				class="be-date-picker--picker_date"
 				type="daterange"
-				:value-format="formatValue()"
+				:value-format="$_formatValue()"
 				range-separator="-"
 				start-placeholder="开始日期"
 				end-placeholder="结束日期"
-				@change="pickerChange"
+				@change="$_pickerChange"
 			/>
 		</div>
 	</div>
 </template>
 
 <script>
-import { vueVersion } from '../../../Store';
+import { vueVersion } from '../../../Store'
 
 export default {
 	name: 'BeDatePicker',
@@ -97,16 +97,18 @@ export default {
 			}, {})
 		},
 		computedDisplayStyle() {
-			return this.pickerShortcuts.length === 0 ? {
-				tab: 'be-date-picker--tab',
-				border: 'be-date-picker--border'
-			}[this.displayStyle] : 'be-date-picker--no-radio-short-cut'
+			return this.pickerShortcuts.length === 0
+				? {
+						tab: 'be-date-picker--tab',
+						border: 'be-date-picker--border'
+				  }[this.displayStyle]
+				: 'be-date-picker--no-radio-short-cut'
 		},
 		attrs() {
 			if (vueVersion.isVue2()) {
 				return {
 					pickerOptions: {
-						disabledDate: this.disableDate,
+						disabledDate: this.$_disableDate,
 						shortcuts: this.pickerShortcuts
 					}
 				}
@@ -114,7 +116,7 @@ export default {
 
 			if (vueVersion.isVue3()) {
 				return {
-					disabledDate: this.disableDate,
+					disabledDate: this.$_disableDate,
 					shortcuts: this.pickerShortcuts
 				}
 			}
@@ -122,9 +124,38 @@ export default {
 	},
 	watch: {
 		radioShortCut(value) {
+			this.$_handleValueUpdate(value)
+		}
+	},
+
+	methods: {
+		// 禁用当前日期以后的日期
+		$_disableDate(date) {
+			const curDate = new Date()
+			curDate.setHours(23, 59, 59, 0)
+
+			return date > curDate.getTime()
+		},
+		$_radioChange() {
+			this.datePickerValue = null
+		},
+		$_pickerChange(e) {
+			this.radioShortCut = ''
+			this.$_handleValueUpdate(this.radioShortCut)
+		},
+		$_formatValue() {
+			if (vueVersion.isVue2()) {
+				return this.valueFormat.replace(/Y/g, 'y').replace(/D/g, 'd')
+			}
+
+			if (vueVersion.isVue3()) {
+				return this.valueFormat.replace(/y/g, 'Y')
+			}
+		},
+		$_handleValueUpdate(radioShortCut) {
 			let res = []
 
-			if (value) {
+			if (radioShortCut) {
 				const getTime = (days) => {
 					const date = new Date().setHours(0, 0, 0, 0)
 					return days === 0
@@ -132,7 +163,7 @@ export default {
 						: [new Date().setTime(date - 3600 * 24 * 1000 * days), date - 1000]
 				}
 
-				res = getTime(value)
+				res = getTime(radioShortCut)
 			} else {
 				res = this.datePickerValue
 			}
@@ -140,32 +171,6 @@ export default {
 			this.$emit('update:modelValue', res)
 			// 对外暴露一个change事件
 			this.$emit('change', res)
-		}
-	},
-
-	methods: {
-		// 禁用当前日期以后的日期
-		disableDate(date) {
-			const curDate = new Date()
-			curDate.setHours(23, 59, 59, 0)
-
-			return date > curDate.getTime()
-		},
-		radioChange() {
-			this.datePickerValue = null
-		},
-		pickerChange(e) {
-			this.radioShortCut = ''
-			this.$emit('update:modelValue', e)
-		},
-		formatValue(){
-			if (vueVersion.isVue2()) {
-				return this.valueFormat.replace(/Y/g, 'y').replace(/D/g,'d')
-			}
-
-			if (vueVersion.isVue3()) {
-				return this.valueFormat.replace(/y/g, 'Y')
-			}
 		}
 	}
 }
