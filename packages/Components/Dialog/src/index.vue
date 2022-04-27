@@ -119,7 +119,7 @@ export default {
 	methods: {
 		confirm() {
 			this.loading = true
-			this.$emit('update:visible', false)
+
 			this.$emit('confirm')
 		},
 		cancel() {
