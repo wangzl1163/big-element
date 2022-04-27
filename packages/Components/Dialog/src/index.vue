@@ -118,9 +118,9 @@ export default {
 	},
 	methods: {
 		confirm() {
-			this.loading = true
-
-			this.$emit('confirm')
+			this.$emit('confirm', (isLoading = false) => {
+				this.loading = isLoading
+			})
 		},
 		cancel() {
 			this.$emit('update:visible', false)
