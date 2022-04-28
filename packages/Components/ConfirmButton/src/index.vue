@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<span>
 		<el-button v-if="confirmType === 'box'" v-bind="$attrs" @click="$_handleClick($event)">
 			<slot>删除</slot>
 		</el-button>
@@ -17,7 +17,7 @@
 				</el-button>
 			</template>
 		</el-popconfirm>
-	</div>
+	</span>
 </template>
 
 <script>
