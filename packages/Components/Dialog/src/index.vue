@@ -15,6 +15,10 @@
 			<slot name="title"></slot>
 		</template>
 
+		<template v-slot:header>
+			<slot name="header"></slot>
+		</template>
+
 		<slot></slot>
 
 		<template v-slot:footer v-if="$slots.footer">
