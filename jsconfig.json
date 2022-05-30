@@ -4,7 +4,8 @@
     "paths": { "@/*": ["packages/*"] },
     "target": "esnext",
     "module": "ESNext",
-    "allowJs": true
+    "allowJs": true,
+    "jsx": "preserve"
   },
   "exclude": ["node_modules", "dist"]
 }
