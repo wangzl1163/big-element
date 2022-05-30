@@ -130,6 +130,7 @@ export default {
 			this.$emit('open')
 		},
 		closed() {
+			this.$emit('update:visible', false)
 			this.$emit('closed')
 		}
 	}
