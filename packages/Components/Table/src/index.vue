@@ -27,6 +27,7 @@
 				<template v-if="item.render">
 					<el-table-column
 						v-if="item.renderHeader"
+						:prop="item.prop"
 						:sortable="item.sortable ? item.sortable : false"
 						:align="item.align"
 						:width="item.width"
@@ -40,7 +41,6 @@
 					</el-table-column>
 					<el-table-column
 						v-else-if="item.type === 'expand'"
-						:sortable="item.sortable ? item.sortable : false"
 						:align="item.align"
 						:width="item.width"
 						:min-width="item.minWidth"
@@ -55,6 +55,7 @@
 					<el-table-column
 						v-else
 						:label="item.label"
+						:prop="item.prop"
 						:sortable="item.sortable ? item.sortable : false"
 						:align="item.align"
 						:width="item.width"

@@ -15,6 +15,10 @@
 			<slot name="title"></slot>
 		</template>
 
+		<template v-slot:header>
+			<slot name="header"></slot>
+		</template>
+
 		<slot></slot>
 
 		<template v-slot:footer v-if="$slots.footer">
@@ -130,6 +134,7 @@ export default {
 			this.$emit('open')
 		},
 		closed() {
+			this.$emit('update:visible', false)
 			this.$emit('closed')
 		}
 	}
