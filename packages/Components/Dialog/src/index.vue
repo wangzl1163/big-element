@@ -7,7 +7,7 @@
 		:close-on-click-modal="maskCloseable"
 		:show-close="showClose"
 		:customClass="'be-dialog ' + customClass"
-		@close="cancel"
+		@close="close"
 		@open="open"
 		@closed="closed"
 	>
@@ -132,6 +132,10 @@ export default {
 		},
 		open() {
 			this.$emit('open')
+		},
+		close() {
+			this.$emit('update:visible', false)
+			this.$emit('close')
 		},
 		closed() {
 			this.$emit('update:visible', false)
