@@ -2,7 +2,10 @@
 	<el-input v-model="value" :type="type" :placeholder="placeholder" @input="$emit('update:modelValue', $event)">
 		<template v-slot:suffix>
 			<i v-if="isVue2" class="el-input__icon el-icon-view" style="line-height: 1" @click="handleClickView" />
-			<View v-if="isVue3" class="be-password-input__icon--vue3" @click="handleClickView"/>
+			<template v-if="isVue3">
+				<View v-show="type === 'password'" class="be-password-input__icon--vue3" @click="handleClickView" />
+				<Hide v-show="type === 'text'" class="be-password-input__icon--vue3" @click="handleClickView" />
+			</template>
 		</template>
 	</el-input>
 </template>
