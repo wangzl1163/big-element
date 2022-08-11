@@ -27,6 +27,7 @@
 				<template v-if="item.render">
 					<el-table-column
 						v-if="item.renderHeader"
+						v-bind="columnAttrs"
 						:prop="item.prop"
 						:sortable="item.sortable ? item.sortable : false"
 						:align="item.align"
@@ -41,6 +42,7 @@
 					</el-table-column>
 					<el-table-column
 						v-else-if="item.type === 'expand'"
+						v-bind="columnAttrs"
 						:align="item.align"
 						:width="item.width"
 						:min-width="item.minWidth"
@@ -54,6 +56,7 @@
 					</el-table-column>
 					<el-table-column
 						v-else
+						v-bind="columnAttrs"
 						:label="item.label"
 						:prop="item.prop"
 						:sortable="item.sortable ? item.sortable : false"
@@ -70,6 +73,7 @@
 
 				<el-table-column
 					v-else
+					v-bind="columnAttrs"
 					:type="item.type"
 					:prop="item.prop"
 					:label="item.label"
@@ -176,6 +180,10 @@ export default {
 			validator(value) {
 				return !!value.prop
 			}
+		},
+		columnAttrs: {
+			type: Object,
+			default: () => ({})
 		},
 		pageIndex: {
 			type: Number,
