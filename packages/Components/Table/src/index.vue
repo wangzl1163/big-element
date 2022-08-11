@@ -36,7 +36,7 @@
 						:min-width="item.minWidth"
 						:render-header="item.renderHeader"
 						:class-name="item.className"
-						:show-overflow-tooltip="showOverflowTooltip"
+						:show-overflow-tooltip="renderColumnShowOverflowTooltip"
 					>
 						<template v-slot="params">
 							<SlotRender :render="item.render" :column="params.column" :row="params.row" :index="params.$index"></SlotRender>
@@ -51,6 +51,7 @@
 						:min-width="item.minWidth"
 						:render-header="item.renderHeader"
 						:class-name="item.className"
+						:show-overflow-tooltip="renderColumnShowOverflowTooltip"
 					>
 						<template v-slot="params">
 							<SlotRender :render="item.render" :column="params.column" :row="params.row" :index="params.$index"></SlotRender>
@@ -66,7 +67,7 @@
 						:width="item.width"
 						:min-width="item.minWidth"
 						:class-name="item.className"
-						:show-overflow-tooltip="showOverflowTooltip"
+						:show-overflow-tooltip="renderColumnShowOverflowTooltip"
 					>
 						<template v-slot="params">
 							<SlotRender :render="item.render" :column="params.column" :row="params.row" :index="params.$index"></SlotRender>
@@ -190,7 +191,7 @@ export default {
 		},
 		columnAttrs: {
 			type: Object,
-			default: () => ({})
+			default: () => ({ showOverflowTooltip: false })
 		},
 		pageIndex: {
 			type: Number,
@@ -234,6 +235,9 @@ export default {
 				order: 'ascending',
 				...this.defaultSort
 			}
+		},
+		renderColumnShowOverflowTooltip() {
+			return this.columnAttrs.showOverflowTooltip !== undefined ? this.columnAttrs.showOverflowTooltip : this.showOverflowTooltip
 		}
 	},
 	watch: {
