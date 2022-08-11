@@ -36,7 +36,7 @@
 						:min-width="item.minWidth"
 						:render-header="item.renderHeader"
 						:class-name="item.className"
-						show-overflow-tooltip
+						:show-overflow-tooltip="showOverflowTooltip"
 					>
 						<template v-slot="params">
 							<SlotRender :render="item.render" :column="params.column" :row="params.row" :index="params.$index"></SlotRender>
@@ -51,7 +51,6 @@
 						:min-width="item.minWidth"
 						:render-header="item.renderHeader"
 						:class-name="item.className"
-						show-overflow-tooltip
 					>
 						<template v-slot="params">
 							<SlotRender :render="item.render" :column="params.column" :row="params.row" :index="params.$index"></SlotRender>
@@ -67,7 +66,7 @@
 						:width="item.width"
 						:min-width="item.minWidth"
 						:class-name="item.className"
-						show-overflow-tooltip
+						:show-overflow-tooltip="showOverflowTooltip"
 					>
 						<template v-slot="params">
 							<SlotRender :render="item.render" :column="params.column" :row="params.row" :index="params.$index"></SlotRender>
@@ -89,7 +88,7 @@
 					:render-header="item.renderHeader"
 					:class-name="item.className"
 					:formatter="item.formatter"
-					show-overflow-tooltip
+					:show-overflow-tooltip="showOverflowTooltip"
 				>
 				</el-table-column>
 			</template>
@@ -184,6 +183,10 @@ export default {
 			validator(value) {
 				return !!value.prop
 			}
+		},
+		showOverflowTooltip: {
+			type: Boolean,
+			default: true
 		},
 		columnAttrs: {
 			type: Object,
