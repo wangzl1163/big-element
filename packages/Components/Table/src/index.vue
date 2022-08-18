@@ -27,7 +27,7 @@
 				<template v-if="item.render">
 					<el-table-column
 						v-if="item.renderHeader"
-						v-bind="columnAttrs"
+						v-bind="{ ...columnAttrs, ...item.columnAttrs }"
 						:type="item.type"
 						:prop="item.prop"
 						:sortable="item.sortable ? item.sortable : false"
@@ -45,7 +45,7 @@
 					<el-table-column
 						v-else-if="item.type === 'expand'"
 						:type="item.type"
-						v-bind="columnAttrs"
+						v-bind="{ ...columnAttrs, ...item.columnAttrs }"
 						:align="item.align"
 						:width="item.width"
 						:min-width="item.minWidth"
@@ -59,7 +59,7 @@
 					</el-table-column>
 					<el-table-column
 						v-else
-						v-bind="columnAttrs"
+						v-bind="{ ...columnAttrs, ...item.columnAttrs }"
 						:label="item.label"
 						:prop="item.prop"
 						:sortable="item.sortable ? item.sortable : false"
@@ -77,7 +77,7 @@
 
 				<el-table-column
 					v-else
-					v-bind="columnAttrs"
+					v-bind="{ ...columnAttrs, ...item.columnAttrs }"
 					:type="item.type"
 					:prop="item.prop"
 					:label="item.label"
