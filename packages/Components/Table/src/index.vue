@@ -27,7 +27,7 @@
 				<template v-if="item.render">
 					<el-table-column
 						v-if="item.renderHeader"
-						v-bind="{ ...columnAttrs, ...item.columnAttrs }"
+						v-bind="{ ...columnAttrs, showOverflowTooltip: renderColumnShowOverflowTooltip, ...item.columnAttrs }"
 						:type="item.type"
 						:prop="item.prop"
 						:sortable="item.sortable ? item.sortable : false"
@@ -36,7 +36,6 @@
 						:min-width="item.minWidth"
 						:render-header="item.renderHeader"
 						:class-name="item.className"
-						:show-overflow-tooltip="renderColumnShowOverflowTooltip"
 					>
 						<template v-slot="params">
 							<SlotRender :render="item.render" :column="params.column" :row="params.row" :index="params.$index"></SlotRender>
@@ -45,13 +44,12 @@
 					<el-table-column
 						v-else-if="item.type === 'expand'"
 						:type="item.type"
-						v-bind="{ ...columnAttrs, ...item.columnAttrs }"
+						v-bind="{ ...columnAttrs, showOverflowTooltip: renderColumnShowOverflowTooltip, ...item.columnAttrs }"
 						:align="item.align"
 						:width="item.width"
 						:min-width="item.minWidth"
 						:render-header="item.renderHeader"
 						:class-name="item.className"
-						:show-overflow-tooltip="renderColumnShowOverflowTooltip"
 					>
 						<template v-slot="params">
 							<SlotRender :render="item.render" :column="params.column" :row="params.row" :index="params.$index"></SlotRender>
@@ -59,7 +57,7 @@
 					</el-table-column>
 					<el-table-column
 						v-else
-						v-bind="{ ...columnAttrs, ...item.columnAttrs }"
+						v-bind="{ ...columnAttrs, showOverflowTooltip: renderColumnShowOverflowTooltip, ...item.columnAttrs }"
 						:label="item.label"
 						:prop="item.prop"
 						:sortable="item.sortable ? item.sortable : false"
@@ -67,7 +65,6 @@
 						:width="item.width"
 						:min-width="item.minWidth"
 						:class-name="item.className"
-						:show-overflow-tooltip="renderColumnShowOverflowTooltip"
 					>
 						<template v-slot="params">
 							<SlotRender :render="item.render" :column="params.column" :row="params.row" :index="params.$index"></SlotRender>
@@ -77,7 +74,7 @@
 
 				<el-table-column
 					v-else
-					v-bind="{ ...columnAttrs, ...item.columnAttrs }"
+					v-bind="{ ...columnAttrs, showOverflowTooltip: showOverflowTooltip, ...item.columnAttrs }"
 					:type="item.type"
 					:prop="item.prop"
 					:label="item.label"
@@ -89,7 +86,6 @@
 					:render-header="item.renderHeader"
 					:class-name="item.className"
 					:formatter="item.formatter"
-					:show-overflow-tooltip="showOverflowTooltip"
 				>
 				</el-table-column>
 			</template>
