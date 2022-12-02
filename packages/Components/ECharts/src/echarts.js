@@ -1,6 +1,3 @@
-// 基于vue-echarts v6.x
-import ECharts from 'vue-echarts'
-
 // 按需引入echarts模块，基于echarts v5.x
 // 引入 echarts 核心模块，核心模块提供了 echarts 使用必须要的接口。
 import * as echarts from 'echarts/core'
@@ -19,21 +16,22 @@ import {
 import { CanvasRenderer } from 'echarts/renderers'
 import { UniversalTransition } from "echarts/features";
 
-// 注册必须的组件
-echarts.use([
-   TitleComponent,
-   TooltipComponent,
-   LegendComponent,
-   PolarComponent,
-   GridComponent,
-   DataZoomComponent,
-   BarChart,
-   LineChart,
-   PieChart,
-   GaugeChart,
-   RadarChart,
-   CanvasRenderer,
-   UniversalTransition
-])
-
-export default ECharts
+export default function (libs) {
+   // 注册必须的组件
+   echarts.use([
+      TitleComponent,
+      TooltipComponent,
+      LegendComponent,
+      PolarComponent,
+      GridComponent,
+      DataZoomComponent,
+      BarChart,
+      LineChart,
+      PieChart,
+      GaugeChart,
+      RadarChart,
+      CanvasRenderer,
+      UniversalTransition,
+      ...libs
+   ])
+}
