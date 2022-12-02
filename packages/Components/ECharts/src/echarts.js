@@ -10,28 +10,34 @@ import {
    LegendComponent,
    PolarComponent,
    GridComponent,
-   DataZoomComponent
+   DataZoomComponent,
+   MarkPointComponent,
+   MarkLineComponent
 } from 'echarts/components'
 // 引入 Canvas 渲染器，注意引入 CanvasRenderer 或者 SVGRenderer 是必须的一步
 import { CanvasRenderer } from 'echarts/renderers'
 import { UniversalTransition } from "echarts/features";
 
-export default function (libs) {
-   // 注册必须的组件
-   echarts.use([
-      TitleComponent,
-      TooltipComponent,
-      LegendComponent,
-      PolarComponent,
-      GridComponent,
-      DataZoomComponent,
-      BarChart,
-      LineChart,
-      PieChart,
-      GaugeChart,
-      RadarChart,
-      CanvasRenderer,
-      UniversalTransition,
-      ...libs
-   ])
-}
+// 注册必须的组件
+echarts.use([
+   TitleComponent,
+   TooltipComponent,
+   LegendComponent,
+   PolarComponent,
+   GridComponent,
+   DataZoomComponent,
+   BarChart,
+   LineChart,
+   PieChart,
+   GaugeChart,
+   RadarChart,
+   CanvasRenderer,
+   UniversalTransition,
+   MarkPointComponent,
+   MarkLineComponent
+])
+
+// 基于vue-echarts v6.x
+import VueECharts from 'vue-echarts'
+
+export default VueECharts

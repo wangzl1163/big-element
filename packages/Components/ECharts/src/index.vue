@@ -17,9 +17,7 @@
 </template>
 
 <script>
-// 基于vue-echarts v6.x
-import VECharts from 'vue-echarts'
-import eChartsUse from './echarts.js'
+import VECharts from './echarts.js'
 
 export default {
 	name: 'BeEcharts',
@@ -48,10 +46,6 @@ export default {
 		showChartWidthNoData: {
 			type: Boolean, // 无数据时是否显示图表，true：显示，false：不显示
 			default: false
-		},
-		echartsLibs:{
-			type: Array,
-			default: ()=>[]
 		}
 	},
 	data() {
@@ -114,9 +108,6 @@ export default {
 			},
 			immediate: true
 		}
-	},
-	created(){
-		eChartsUse(this.echartsLibs)
 	}
 }
 </script>
