@@ -2,7 +2,7 @@
 // 引入 echarts 核心模块，核心模块提供了 echarts 使用必须要的接口。
 import * as echarts from 'echarts/core'
 // 引入图表，图表后缀都为 Chart
-import { BarChart, LineChart, PieChart, GaugeChart, RadarChart } from 'echarts/charts'
+import { BarChart, LineChart, PieChart, GaugeChart, RadarChart, TreemapChart } from 'echarts/charts'
 // 引入坐标系组件，组件后缀都为 Component
 import {
    TitleComponent,
@@ -26,15 +26,16 @@ echarts.use([
    PolarComponent,
    GridComponent,
    DataZoomComponent,
+   MarkPointComponent,
+   MarkLineComponent,
    BarChart,
    LineChart,
    PieChart,
    GaugeChart,
    RadarChart,
+   TreemapChart,
    CanvasRenderer,
-   UniversalTransition,
-   MarkPointComponent,
-   MarkLineComponent
+   UniversalTransition
 ])
 
 // 基于vue-echarts v6.x
