@@ -104,3 +104,35 @@ app.use(ElementPlus)
 app.use(BeECharts)
 app.mount('#app')
 ```
+
+3、特别说明
+3.1 按需加载 ECharts 模块
+自 v1.2.1 版本开始 BeECharts 组件支持按需加载 ECharts 模块即从 prop 传入需要加载的 ECharts 模块。
+
+```javascript
+<template>
+   <BeEcharts
+      :option="option"
+      :show-chart-width-no-data="true"
+      :echartsComponents="[LineChart,DataZoomComponent]"
+   />
+</template>
+<script lang="ts" setup>
+import { ref,} from "vue";
+// 引入组件中未引入的 ECharts 模块
+import { LineChart } from 'echarts/charts'
+import { DataZoomComponent } from 'echarts/components'
+
+const option={}
+<script>
+```
+
+注意：在以 Vite 为打包工具的项目中需要在其配置文件 vite.config.ts(js) 中增加 optimizeDeps.exclude 配置项，否则在开发模式中无法正确显示图表。
+
+```javascript
+export default defineConfig({
+  optimizeDeps: {
+    exclude: ['echarts']
+  }
+})
+```
