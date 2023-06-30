@@ -21,13 +21,12 @@
 			@row-click="$_handleRowClick"
 			@sort-change="$_handleSortChange"
 			@selection-change="$_handleSelectionChange"
-			@expand-change="$_handleExpandChange"
-		>
+			@expand-change="$_handleExpandChange">
 			<template v-for="item in columns">
 				<template v-if="item.render">
 					<el-table-column
 						v-if="item.renderHeader"
-						v-bind="{ ...columnAttrs, showOverflowTooltip: renderColumnShowOverflowTooltip, ...item.columnAttrs }"
+						v-bind="{ ...columnAttrs, showOverflowTooltip: showOverflowTooltip, ...item.columnAttrs }"
 						:type="item.type"
 						:prop="item.prop"
 						:sortable="item.sortable ? item.sortable : false"
@@ -35,8 +34,7 @@
 						:width="item.width"
 						:min-width="item.minWidth"
 						:render-header="item.renderHeader"
-						:class-name="item.className"
-					>
+						:class-name="item.className">
 						<template v-slot="params">
 							<SlotRender :render="item.render" :column="params.column" :row="params.row" :index="params.$index"></SlotRender>
 						</template>
@@ -44,28 +42,26 @@
 					<el-table-column
 						v-else-if="item.type === 'expand'"
 						:type="item.type"
-						v-bind="{ ...columnAttrs, showOverflowTooltip: renderColumnShowOverflowTooltip, ...item.columnAttrs }"
+						v-bind="{ ...columnAttrs, showOverflowTooltip: showOverflowTooltip, ...item.columnAttrs }"
 						:align="item.align"
 						:width="item.width"
 						:min-width="item.minWidth"
 						:render-header="item.renderHeader"
-						:class-name="item.className"
-					>
+						:class-name="item.className">
 						<template v-slot="params">
 							<SlotRender :render="item.render" :column="params.column" :row="params.row" :index="params.$index"></SlotRender>
 						</template>
 					</el-table-column>
 					<el-table-column
 						v-else
-						v-bind="{ ...columnAttrs, showOverflowTooltip: renderColumnShowOverflowTooltip, ...item.columnAttrs }"
+						v-bind="{ ...columnAttrs, showOverflowTooltip: showOverflowTooltip, ...item.columnAttrs }"
 						:label="item.label"
 						:prop="item.prop"
 						:sortable="item.sortable ? item.sortable : false"
 						:align="item.align"
 						:width="item.width"
 						:min-width="item.minWidth"
-						:class-name="item.className"
-					>
+						:class-name="item.className">
 						<template v-slot="params">
 							<SlotRender :render="item.render" :column="params.column" :row="params.row" :index="params.$index"></SlotRender>
 						</template>
@@ -85,8 +81,7 @@
 					:min-width="item.minWidth"
 					:render-header="item.renderHeader"
 					:class-name="item.className"
-					:formatter="item.formatter"
-				>
+					:formatter="item.formatter">
 				</el-table-column>
 			</template>
 		</el-table>
@@ -95,12 +90,12 @@
 			<el-pagination
 				@size-change="$_handleSizeChange"
 				@current-change="$_handlePageChange"
+				:background="pageBackground"
 				:current-page="pageNo"
 				:page-sizes="pageSizes"
 				:page-size="pageCount"
 				:layout="pageLayout"
-				:total="isSelfPaging ? data.length : total"
-			>
+				:total="isSelfPaging ? data.length : total">
 			</el-pagination>
 		</div>
 	</div>
@@ -153,11 +148,6 @@ export default {
 			default: false
 		},
 		spanMethod: Function,
-		isSelfPaging: {
-			// 是否前端自己分页
-			type: Boolean,
-			default: false
-		},
 		rowKey: {
 			type: String
 		},
@@ -181,13 +171,18 @@ export default {
 				return !!value.prop
 			}
 		},
-		showOverflowTooltip: {
+		columnAttrs: {
+			type: Object,
+			default: () => ({})
+		},
+		showPagination: {
 			type: Boolean,
 			default: true
 		},
-		columnAttrs: {
-			type: Object,
-			default: () => ({ showOverflowTooltip: false })
+		isSelfPaging: {
+			// 是否前端自己分页
+			type: Boolean,
+			default: false
 		},
 		pageIndex: {
 			type: Number,
@@ -209,9 +204,9 @@ export default {
 			type: String,
 			default: 'total, sizes, prev, pager, next, jumper'
 		},
-		showPagination: {
+		pageBackground: {
 			type: Boolean,
-			default: true
+			default: false
 		}
 	},
 	emits: ['pageSizeChange', 'pageChange', 'currentRowChange', 'rowClick', 'expandChange', 'selectionChange', 'sortChange'],
@@ -232,8 +227,8 @@ export default {
 				...this.defaultSort
 			}
 		},
-		renderColumnShowOverflowTooltip() {
-			return this.columnAttrs.showOverflowTooltip !== undefined ? this.columnAttrs.showOverflowTooltip : this.showOverflowTooltip
+		showOverflowTooltip() {
+			return this.columnAttrs.showOverflowTooltip !== undefined ? this.columnAttrs.showOverflowTooltip : true
 		}
 	},
 	watch: {
